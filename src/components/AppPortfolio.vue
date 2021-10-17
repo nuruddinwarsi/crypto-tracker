@@ -1,13 +1,12 @@
 <template>
-  <div id="app">
-    <RouterView></RouterView>
+  <div>
+    <h1>Portfolio</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
-  components: {},
+  name: 'AppPortfolio',
 };
 </script>
 
