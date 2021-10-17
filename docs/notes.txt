@@ -1,0 +1,12 @@
+Primary Background colour: #121212
+Secondary background colour: #2B2A3A
+Tertiary colour : #3D66F1
+Tertiary colour (for icons) : #FEBC1D
+
+Candlebar green : #4F9320
+Candlebar red : #E03C32
+
+Alert button : #478C4B 
+
+Bottom navbar on mobile view
+Left side navbar on desktop view
