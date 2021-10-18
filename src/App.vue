@@ -20,4 +20,34 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#app {
+  overflow: hidden;
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 1fr;
+  grid-template-areas:
+    'body'
+    'navbar';
+}
+
+#main-content {
+  grid-area: body;
+}
+
+#navbar {
+  grid-area: navbar;
+  align-self: end;
+}
+
+@media only screen and (min-width: 500px) {
+  #app {
+    grid-template-columns: 0.25fr 1fr;
+    grid-template-areas: 'navbar body';
+  }
+
+  #navbar {
+    align-self: start;
+  }
+}
+</style>
