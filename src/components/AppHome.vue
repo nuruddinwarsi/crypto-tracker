@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import { getCrypto } from '@/services/getCryptos';
+import { getCryptoList } from '@/services/getCryptoList';
 
 export default {
   name: 'AppHome',
   methods: {
-    async getCryptos() {
+    async getCryptoList() {
       try {
-        const data = await getCrypto();
+        const data = await getCryptoList();
         console.log(data);
       } catch (error) {
         console.log(error);
@@ -20,7 +20,7 @@ export default {
     },
   },
   created() {
-    this.getCryptos();
+    this.getCryptoList();
   },
 };
 </script>

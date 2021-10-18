@@ -3,7 +3,7 @@ import AppConfig from '@/config';
 
 const { apiBaseUrl } = AppConfig;
 
-const getCrypto = async () => {
+const getCryptoList = async () => {
   const response = await axios.get(`${apiBaseUrl}/v3/coins/markets`, {
     params: {
       vs_currency: 'inr',
@@ -12,4 +12,4 @@ const getCrypto = async () => {
   return response.data;
 };
 
-export { getCrypto };
+export { getCryptoList };
