@@ -10,3 +10,6 @@ Alert button : #478C4B
 
 Bottom navbar on mobile view
 Left side navbar on desktop view
+
+gradient hover effect
+https://codepen.io/thebabydino/pen/jBbXPP
