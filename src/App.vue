@@ -21,18 +21,25 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+* {
+  font-family: 'Chivo', sans-serif;
+}
+
 #app {
-  overflow: hidden;
   display: grid;
   height: 100vh;
   grid-template-rows: 1fr;
   grid-template-areas:
     'body'
     'navbar';
+  background: #121212;
 }
 
 #main-content {
   grid-area: body;
+  color: white;
 }
 
 #navbar {
@@ -42,7 +49,7 @@ export default {
 
 @media only screen and (min-width: 500px) {
   #app {
-    grid-template-columns: 0.25fr 1fr;
+    grid-template-columns: 0.1fr 1fr;
     grid-template-areas: 'navbar body';
   }
 
