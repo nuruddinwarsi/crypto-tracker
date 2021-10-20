@@ -4,7 +4,12 @@
     <div class="name">{{ crypto.name }}</div>
     <div class="price">{{ crypto.current_price }}</div>
     <div class="change">
-      <span>{{ crypto.price_change_24h }}</span>
+      <span
+        >₹
+        {{
+          Math.round((crypto.price_change_24h + Number.EPSILON) * 100) / 100
+        }}</span
+      >
       <span>{{ crypto.price_change_percentage_24h }}%</span>
     </div>
   </div>
@@ -32,9 +37,12 @@ export default {
   /* grid-template-areas:
     'coin-image name price'
     'coin-image name change'; */
-  padding: 10px;
+  padding: 16px 1px;
   border-bottom: 0.1px solid grey;
   font-size: 14px;
+  align-items: center;
+  text-decoration: none;
+  color: #f9f9f9;
 }
 
 .name {

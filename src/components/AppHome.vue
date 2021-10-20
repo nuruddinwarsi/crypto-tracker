@@ -10,7 +10,7 @@
         <div>Price</div>
         <div>Change</div>
       </div>
-      <div v-for="crypto in cryptoList" :key="crypto.id" class="crypto-list">
+      <div v-for="crypto in cryptoList" :key="crypto.id">
         <CryptoCard :crypto="crypto" :key="crypto.id" />
       </div>
     </div>
@@ -75,6 +75,7 @@ export default {
 }
 .crypto-data {
   display: grid;
+  justify-content: center;
 }
 .column-header {
   display: grid;

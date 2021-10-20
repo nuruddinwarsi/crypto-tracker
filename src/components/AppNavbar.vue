@@ -1,8 +1,8 @@
 <template>
   <div class="navbar">
     <router-link class="navbar-link item-1" exact to="/" active-class="active"
-      >Home</router-link
-    >
+      >Home
+    </router-link>
     <router-link
       class="navbar-link item-2"
       to="/portfolio"
@@ -81,11 +81,11 @@ export default {
 .navbar-link:hover {
   --x: 100%;
 }
-.active {
-  /* border-bottom: 2px solid #febc1d; */
-  /* background-color: white; */
-  /* color: red; */
-}
+/* .active {
+  border-bottom: 2px solid #febc1d;
+  background-color: white;
+  color: red;
+} */
 @media only screen and (min-width: 500px) {
   .navbar {
     height: 100%;
