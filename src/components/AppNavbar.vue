@@ -36,6 +36,9 @@ export default {
   border-radius: 7px 7px 0 0;
   background-color: #2b2a3a;
   row-gap: 0;
+  /* From App.vue */
+  grid-area: navbar;
+  align-self: end;
 }
 
 .item-1 {
@@ -85,7 +88,7 @@ export default {
 }
 @media only screen and (min-width: 500px) {
   .navbar {
-    height: 100vh;
+    height: 100%;
     grid-template-rows: repeat(3, 0.1fr);
     grid-template-columns: auto;
     grid-template-areas:

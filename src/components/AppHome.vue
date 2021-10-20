@@ -1,23 +1,31 @@
 <template>
   <div class="body-content">
-    <div class="header">
+    <div class="page-title">
       <h2>CryptoTracker</h2>
     </div>
-    <div v-for="crypto in cryptoList" :key="crypto.id">
-      <img :src="crypto.image" :alt="crypto.name" class="coin-image" />
-      <span>{{ crypto.name }}</span>
-      <span> : INR {{ crypto.current_price }}</span>
-      <span> : {{ crypto.price_change_percentage_24h }}%</span>
+    <div class="crypto-data">
+      <div class="column-header">
+        <div></div>
+        <div>Coin</div>
+        <div>Price</div>
+        <div>Change</div>
+      </div>
+      <div v-for="crypto in cryptoList" :key="crypto.id" class="crypto-list">
+        <CryptoCard :crypto="crypto" :key="crypto.id" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { getCryptoList } from '@/services/getCryptoList';
+import CryptoCard from '@/components/CryptoCard';
 
 export default {
   name: 'AppHome',
-
+  components: {
+    CryptoCard,
+  },
   data() {
     return {
       // getCryptoList API data
@@ -47,18 +55,36 @@ export default {
   },
   created() {
     // Call API on page load
-    // this.getCryptoList();
+    this.getCryptoList();
   },
 };
 </script>
 
 <style scoped>
-.header {
-  display: grid;
-  justify-content: center;
+/* From App.vue */
+.body-content {
+  grid-area: body;
+  color: white;
+  overflow-y: scroll;
 }
 
-.coin-image {
-  width: 10%;
+.page-title {
+  display: grid;
+  justify-content: center;
+  margin-bottom: 5rem;
 }
+.crypto-data {
+  display: grid;
+}
+.column-header {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.crypto-list {
+  /* display: grid; */
+  margin: 10px;
+}
+/* .coin-image {
+  width: 50px;
+} */
 </style>
