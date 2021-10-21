@@ -5,6 +5,7 @@ import Router from 'vue-router';
 import AppHome from '@/components/AppHome';
 import AppPortfolio from '@/components/AppPortfolio';
 import AppAlerts from '@/components/AppAlerts';
+import CryptoPage from '@/components/CryptoPage';
 
 const router = new Router({
   mode: 'history',
@@ -23,6 +24,14 @@ const router = new Router({
       name: 'AppAlerts',
       path: '/alerts',
       component: AppAlerts,
+    },
+
+    // Dynamic route for individual cryptocurrency
+    {
+      name: 'CryptoPage',
+      path: '/crypto/:coin',
+      component: CryptoPage,
+      props: true,
     },
   ],
 });
