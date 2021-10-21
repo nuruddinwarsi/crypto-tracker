@@ -1,5 +1,6 @@
 <template>
-  <div class="crypto">
+  <router-link class="crypto" :to="`/crypto/${crypto.id}`">
+    <!-- :to="{ name: 'CryptoPage', params: { coin: key } }" -->
     <img :src="crypto.image" :alt="crypto.name" class="coin-image" />
     <div class="name">{{ crypto.name }}</div>
     <div class="price">₹ {{ crypto.current_price }}</div>
@@ -19,7 +20,7 @@
         }}%</span
       >
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
