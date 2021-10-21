@@ -10,20 +10,46 @@
         <div class="percentage-change">10 %</div>
       </div>
     </div>
-    <div class="candlestick"></div>
+    <div class="candlestick">
+      <apexchart
+        height="100%"
+        type="bar"
+        :options="options"
+        :series="series"
+      ></apexchart>
+    </div>
   </div>
 </template>
 
 <script>
+// import VueApexCharts from 'vue-apexcharts';
+
 export default {
   name: 'CryptoPage',
+  data: function() {
+    return {
+      options: {
+        chart: {
+          id: 'vuechart-example',
+        },
+        xaxis: {
+          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+        },
+      },
+      series: [
+        {
+          name: 'series-1',
+          data: [30, 40, 45, 50, 49, 60, 70, 91],
+        },
+      ],
+    };
+  },
 };
 </script>
 
 <style scoped>
 .body-content {
   grid-area: body;
-  color: white;
   overflow-y: scroll;
   margin: 0 8px;
   display: grid;
@@ -34,6 +60,7 @@ export default {
   /* margin-bottom: 5rem; */
   grid-area: 'page-title';
   place-self: center;
+  color: white;
 }
 .price-data {
   display: grid;
