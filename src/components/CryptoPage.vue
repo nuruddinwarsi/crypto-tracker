@@ -1,7 +1,10 @@
 <template>
   <div class="body-content">
     <div class="page-title">
-      <h2>{{ $route.params.coin.toUpperCase() }}</h2>
+      <h2>
+        {{ $route.params.coin.toUpperCase() }} /
+        {{ $route.params.symbol.toUpperCase() }}
+      </h2>
     </div>
     <div class="price-data">
       <div class="current-price">₹ 123</div>
@@ -11,38 +14,28 @@
       </div>
     </div>
     <div class="candlestick">
-      <apexchart
-        height="100%"
-        type="bar"
-        :options="options"
-        :series="series"
-      ></apexchart>
+      <VueTradingView
+        :options="{
+          symbol: `COINBASE:${$route.params.symbol.toUpperCase()}USD`,
+          theme: 'dark',
+          interval: '240',
+          autosize: true,
+          height: '100%',
+          timezone: 'Asia/Kolkata',
+        }"
+      />
     </div>
   </div>
 </template>
 
 <script>
 // import VueApexCharts from 'vue-apexcharts';
+import VueTradingView from 'vue-trading-view';
 
 export default {
   name: 'CryptoPage',
-  data: function() {
-    return {
-      options: {
-        chart: {
-          id: 'vuechart-example',
-        },
-        xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
-        },
-      },
-      series: [
-        {
-          name: 'series-1',
-          data: [30, 40, 45, 50, 49, 60, 70, 91],
-        },
-      ],
-    };
+  components: {
+    VueTradingView,
   },
 };
 </script>
@@ -77,6 +70,10 @@ export default {
   justify-items: end;
   padding-right: 8px;
   grid-area: 'change';
+}
+
+.candlestick {
+  margin: 1rem 0;
 }
 
 @media only screen and (min-width: 500px) {
