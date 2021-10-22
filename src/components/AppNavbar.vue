@@ -1,30 +1,68 @@
 <template>
-  <div class="navbar">
-    <router-link class="navbar-link item-1" exact to="/" active-class="active"
-      >Home
-    </router-link>
-    <router-link
-      class="navbar-link item-2"
-      to="/portfolio"
-      active-class="active"
-      >Portfolio</router-link
-    >
-    <router-link class="navbar-link item-3" to="/alerts" active-class="active"
-      >Alerts</router-link
-    >
-    <!-- <div class="navbar-item item-4">
-      <router-link class="navbar-link" to="/alerts">Alerts</router-link>
-    </div> -->
+  <div id="navbar">
+    <div class="toggleButton" v-show="isDesktop">
+      <button
+        type="button"
+        class="navbar-toggle"
+        aria-label="Open navigation menu"
+      >
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar" v-show="!isDesktop">
+      <router-link class="navbar-link item-1" exact to="/" active-class="active"
+        >Home
+      </router-link>
+      <router-link
+        class="navbar-link item-2"
+        to="/portfolio"
+        active-class="active"
+        >Portfolio</router-link
+      >
+      <router-link class="navbar-link item-3" to="/alerts" active-class="active"
+        >Alerts</router-link
+      >
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'AppNavbar',
+  data() {
+    return {
+      windowWidth: window.innerWidth,
+    };
+  },
+  mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
+  },
+  computed: {
+    isDesktop() {
+      return this.windowWidth > 500;
+    },
+  },
 };
 </script>
 
 <style scoped>
+.navbar-toggle {
+  display: grid;
+  background-color: #121212;
+  border: none;
+  margin: 16px 0 0 0;
+}
+.icon-bar {
+  display: inline-block;
+  width: 25px;
+  height: 4px;
+  margin: 2px;
+  background-color: rgb(128, 128, 128);
+}
 .navbar {
   /* border: 1px solid black; */
   display: grid;
@@ -86,8 +124,14 @@ export default {
 } */
 @media only screen and (min-width: 500px) {
   .navbar {
-    align-self: start;
-    border-radius: 0 0 5px 5px;
+    height: 100%;
+    grid-template-rows: repeat(3, 0.1fr);
+    grid-template-columns: auto;
+    grid-template-areas:
+      'item-1'
+      'item-2'
+      'item-3';
+    border-radius: 0 5px 0 0;
   }
 
   /* .active {
