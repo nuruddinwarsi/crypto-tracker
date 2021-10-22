@@ -50,11 +50,15 @@ export default {
 </script>
 
 <style scoped>
+#navbar {
+  display: grid;
+  grid-area: navbar;
+}
 .navbar-toggle {
   display: grid;
   background-color: #121212;
   border: none;
-  margin: 16px 0 0 0;
+  margin: 16px 0 0 16px;
 }
 .icon-bar {
   display: inline-block;
@@ -64,18 +68,16 @@ export default {
   background-color: rgb(128, 128, 128);
 }
 .navbar {
-  /* border: 1px solid black; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
   grid-template-areas: 'item-1 item-2 item-3';
   justify-items: stretch;
-  /* align-items: center; */
   border-radius: 7px 7px 0 0;
   background-color: #202020;
   row-gap: 0;
   /* From App.vue */
-  grid-area: navbar;
+
   align-self: end;
 }
 
@@ -90,28 +92,10 @@ export default {
 }
 
 .navbar-link {
-  /* border: 1px solid red; */
   text-decoration: none;
   color: #8edce6;
   padding: 20px;
   text-align: center;
-
-  /* TRYING HOVER */
-  /* background-image: linear-gradient(
-    to top,
-    #2b2a3a,
-    #005982,
-    #0091a4,
-    #00c580,
-    #a8eb12
-  ); */
-  /* transition: 0.5s;
-  background: linear-gradient(90deg, #f6d369, #fda085 51%, #f6d365) var(--x, 0) /
-    200%;
-  color: white; */
-
-  /* box-shadow: 0 0 20px #eee; */
-  /* border-radius: 10px; */
 }
 
 .navbar-link:hover {
@@ -133,10 +117,5 @@ export default {
       'item-3';
     border-radius: 0 5px 0 0;
   }
-
-  /* .active {
-    border-left: 2px solid #febc1d;
-    border-bottom: 0;
-  } */
 }
 </style>

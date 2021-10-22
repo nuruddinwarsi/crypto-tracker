@@ -24,11 +24,7 @@ export default {
 }
 
 #app {
-  /* max-height: 100vh;
-  height: 100%;
-  overflow-y: scroll; */
   height: 100vh;
-
   display: grid;
   grid-template-rows: 1fr;
   grid-template-areas:
@@ -37,24 +33,10 @@ export default {
   background: #121212;
 }
 
-/* #main-content {
-  grid-area: body;
-  color: white;
-} */
-
-/* #navbar {
-  grid-area: navbar;
-  align-self: end;
-} */
-
 @media only screen and (min-width: 500px) {
   #app {
     grid-template-rows: auto;
     grid-template-areas: 'navbar body';
   }
-
-  /* #navbar {
-    align-self: start;
-  } */
 }
 </style>
