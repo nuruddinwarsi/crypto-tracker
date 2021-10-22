@@ -58,9 +58,19 @@ export default {
   justify-items: center;
   /* text-align: center; */
 }
+.navbar-link:hover,
+.navbar-link:focus {
+  background: linear-gradient(90deg, #a1c4fd, #c2e9fb 51%, #a1c4fd) var(--x, 0) /
+    200%;
+  color: white;
+  border-radius: 5px;
+}
 
-.navbar-link:hover {
-  --x: 100%;
+.active {
+  background: linear-gradient(90deg, #a1c4fd, #c2e9fb 51%, #a1c4fd) var(--x, 0) /
+    200%;
+  color: white;
+  border-radius: 5px;
 }
 
 @media only screen and (min-width: 500px) {
@@ -78,5 +88,9 @@ export default {
     grid-template-rows: 1fr;
     grid-template-columns: 0.1fr 0.9fr;
   }
+  /* .active {
+    border-bottom: none;
+    border-left: 2px solid #8edce6;
+  } */
 }
 </style>
