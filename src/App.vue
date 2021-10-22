@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <AppNavbar></AppNavbar>
-    <RouterView></RouterView>
+    <AppNavbar id="navbar"></AppNavbar>
+    <RouterView id="main"></RouterView>
   </div>
 </template>
 
@@ -25,6 +25,7 @@ export default {
 
 #app {
   height: 100vh;
+
   display: grid;
   grid-template-rows: 1fr;
   grid-template-areas:
@@ -32,9 +33,20 @@ export default {
     'navbar';
   background: #121212;
 }
+#navbar {
+  grid-area: navbar;
+  align-self: end;
+}
 
+#main {
+  grid-area: body;
+  color: white;
+  overflow-y: scroll;
+  margin: 0 8px;
+}
 @media only screen and (min-width: 500px) {
   #app {
+    grid-template-columns: 0.1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: 'navbar body';
   }
