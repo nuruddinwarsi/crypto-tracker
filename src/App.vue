@@ -49,9 +49,10 @@ export default {
 
 @media only screen and (min-width: 500px) {
   #app {
-    grid-template-columns: 0.1fr 1fr;
     grid-template-rows: auto;
-    grid-template-areas: 'navbar body';
+    grid-template-areas:
+      'navbar'
+      'body';
   }
 
   /* #navbar {

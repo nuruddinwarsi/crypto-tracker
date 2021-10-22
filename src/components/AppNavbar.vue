@@ -34,7 +34,7 @@ export default {
   justify-items: stretch;
   /* align-items: center; */
   border-radius: 7px 7px 0 0;
-  background-color: #2b2a3a;
+  background-color: #202020;
   row-gap: 0;
   /* From App.vue */
   grid-area: navbar;
@@ -49,15 +49,13 @@ export default {
 }
 .item-3 {
   grid-area: item-3;
-  color: #febc1d;
 }
 
 .navbar-link {
   /* border: 1px solid red; */
   text-decoration: none;
-  color: #febc1d;
-  padding: 0.75rem;
-  /* place-self: stretch; */
+  color: #8edce6;
+  padding: 20px;
   text-align: center;
 
   /* TRYING HOVER */
@@ -88,14 +86,8 @@ export default {
 } */
 @media only screen and (min-width: 500px) {
   .navbar {
-    height: 100%;
-    grid-template-rows: repeat(3, 0.1fr);
-    grid-template-columns: auto;
-    grid-template-areas:
-      'item-1'
-      'item-2'
-      'item-3';
-    border-radius: 0 5px 0 0;
+    align-self: start;
+    border-radius: 0 0 5px 5px;
   }
 
   /* .active {
