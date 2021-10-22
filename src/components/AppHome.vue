@@ -80,13 +80,6 @@ export default {
 
 <style scoped>
 /* From App.vue */
-.body-content {
-  grid-area: body;
-  color: white;
-  overflow-y: scroll;
-  margin: 0 8px;
-}
-
 .page-title {
   display: grid;
   justify-content: center;

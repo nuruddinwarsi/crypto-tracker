@@ -1,20 +1,18 @@
 <template>
   <div class="navbar">
-    <router-link class="navbar-link item-1" exact to="/" active-class="active"
-      >Home
+    <router-link class="navbar-link item-1" exact to="/" active-class="active">
+      <font-awesome-icon icon="home" class="icon" /> Home
     </router-link>
     <router-link
       class="navbar-link item-2"
       to="/portfolio"
       active-class="active"
-      >Portfolio</router-link
     >
-    <router-link class="navbar-link item-3" to="/alerts" active-class="active"
-      >Alerts</router-link
+      <font-awesome-icon icon="user" class="icon" />Portfolio</router-link
     >
-    <!-- <div class="navbar-item item-4">
-      <router-link class="navbar-link" to="/alerts">Alerts</router-link>
-    </div> -->
+    <router-link class="navbar-link item-3" to="/alerts" active-class="active">
+      <font-awesome-icon icon="bell" class="icon" />Alerts</router-link
+    >
   </div>
 </template>
 
@@ -26,19 +24,18 @@ export default {
 
 <style scoped>
 .navbar {
-  /* border: 1px solid black; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
   grid-template-areas: 'item-1 item-2 item-3';
   justify-items: stretch;
-  /* align-items: center; */
-  border-radius: 7px 7px 0 0;
-  background-color: #2b2a3a;
+  border-radius: 5px 5px 0 0;
+  background-color: #202020;
   row-gap: 0;
-  /* From App.vue */
-  grid-area: navbar;
-  align-self: end;
+}
+
+.icon {
+  padding: 0 8px;
 }
 
 .item-1 {
@@ -53,39 +50,29 @@ export default {
 }
 
 .navbar-link {
-  /* border: 1px solid red; */
   text-decoration: none;
-  color: #febc1d;
-  padding: 0.75rem;
-  /* place-self: stretch; */
-  text-align: center;
-
-  /* TRYING HOVER */
-  /* background-image: linear-gradient(
-    to top,
-    #2b2a3a,
-    #005982,
-    #0091a4,
-    #00c580,
-    #a8eb12
-  ); */
-  /* transition: 0.5s;
-  background: linear-gradient(90deg, #f6d369, #fda085 51%, #f6d365) var(--x, 0) /
+  color: #8edce6;
+  padding: 20px;
+  display: grid;
+  grid-template-rows: repeat(2, 0.5fr);
+  justify-items: center;
+  /* text-align: center; */
+}
+.navbar-link:hover,
+.navbar-link:focus {
+  background: linear-gradient(90deg, #a1c4fd, #c2e9fb 51%, #a1c4fd) var(--x, 0) /
     200%;
-  color: white; */
-
-  /* box-shadow: 0 0 20px #eee; */
-  /* border-radius: 10px; */
+  color: white;
+  border-radius: 5px;
 }
 
-.navbar-link:hover {
-  --x: 100%;
+.active {
+  background: linear-gradient(90deg, #a1c4fd, #c2e9fb 51%, #a1c4fd) var(--x, 0) /
+    200%;
+  color: white;
+  border-radius: 5px;
 }
-/* .active {
-  border-bottom: 2px solid #febc1d;
-  background-color: white;
-  color: red;
-} */
+
 @media only screen and (min-width: 500px) {
   .navbar {
     height: 100%;
@@ -97,10 +84,13 @@ export default {
       'item-3';
     border-radius: 0 5px 0 0;
   }
-
+  .navbar-link {
+    grid-template-rows: 1fr;
+    grid-template-columns: 0.1fr 0.9fr;
+  }
   /* .active {
-    border-left: 2px solid #febc1d;
-    border-bottom: 0;
+    border-bottom: none;
+    border-left: 2px solid #8edce6;
   } */
 }
 </style>
