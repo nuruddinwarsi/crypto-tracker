@@ -1,5 +1,8 @@
 <template>
-  <router-link class="crypto" :to="`/crypto/${crypto.id}`">
+  <router-link
+    class="crypto"
+    :to="`/crypto/${crypto.id}/symbol/${crypto.symbol}`"
+  >
     <!-- :to="{ name: 'CryptoPage', params: { coin: key } }" -->
     <img :src="crypto.image" :alt="crypto.name" class="coin-image" />
     <div class="name">{{ crypto.name }}</div>
