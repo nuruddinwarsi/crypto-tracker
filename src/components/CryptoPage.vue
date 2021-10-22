@@ -7,9 +7,9 @@
       </h2>
     </div>
     <div class="price-data">
-      <div class="current-price">₹ 123</div>
+      <div class="current-price">$ 123</div>
       <div class="change">
-        <div class="price-change">₹ 12</div>
+        <div class="price-change">$ 12</div>
         <div class="percentage-change">10 %</div>
       </div>
     </div>
