@@ -42,7 +42,7 @@ export default {
   grid-area: body;
   color: white;
   overflow-y: scroll;
-  margin: 0 8px;
+  margin: 0 16px;
 }
 @media only screen and (min-width: 500px) {
   #app {

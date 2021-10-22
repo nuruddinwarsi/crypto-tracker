@@ -1,20 +1,18 @@
 <template>
   <div class="navbar">
-    <router-link class="navbar-link item-1" exact to="/" active-class="active"
-      >Home
+    <router-link class="navbar-link item-1" exact to="/" active-class="active">
+      <font-awesome-icon icon="home" class="icon" /> Home
     </router-link>
     <router-link
       class="navbar-link item-2"
       to="/portfolio"
       active-class="active"
-      >Portfolio</router-link
     >
-    <router-link class="navbar-link item-3" to="/alerts" active-class="active"
-      >Alerts</router-link
+      <font-awesome-icon icon="user" class="icon" />Portfolio</router-link
     >
-    <!-- <div class="navbar-item item-4">
-      <router-link class="navbar-link" to="/alerts">Alerts</router-link>
-    </div> -->
+    <router-link class="navbar-link item-3" to="/alerts" active-class="active">
+      <font-awesome-icon icon="bell" class="icon" />Alerts</router-link
+    >
   </div>
 </template>
 
@@ -31,9 +29,13 @@ export default {
   grid-template-rows: 1fr;
   grid-template-areas: 'item-1 item-2 item-3';
   justify-items: stretch;
-  border-radius: 7px 7px 0 0;
+  border-radius: 5px 5px 0 0;
   background-color: #202020;
   row-gap: 0;
+}
+
+.icon {
+  padding: 0 8px;
 }
 
 .item-1 {
@@ -51,7 +53,10 @@ export default {
   text-decoration: none;
   color: #8edce6;
   padding: 20px;
-  text-align: center;
+  display: grid;
+  grid-template-rows: repeat(2, 0.5fr);
+  justify-items: center;
+  /* text-align: center; */
 }
 
 .navbar-link:hover {
@@ -68,6 +73,10 @@ export default {
       'item-2'
       'item-3';
     border-radius: 0 5px 0 0;
+  }
+  .navbar-link {
+    grid-template-rows: 1fr;
+    grid-template-columns: 0.1fr 0.9fr;
   }
 }
 </style>
