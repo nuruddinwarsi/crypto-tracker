@@ -17,17 +17,24 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css2?family=Chivo&display=swap');
 
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 * {
   font-family: 'Chivo', sans-serif;
+  animation: 1s ease-out 0s 1 slideInFromLeft;
 }
 
 #app {
-  height: 100vh;
-
   display: grid;
-  grid-template-rows: 1fr;
+  grid-template-rows: auto;
   grid-template-areas:
     'body'
     'navbar';
@@ -39,15 +46,15 @@ export default {
 }
 
 #main {
+  min-height: 100vh;
   grid-area: body;
   color: white;
-  overflow-y: scroll;
   margin: 0 16px;
 }
 @media only screen and (min-width: 500px) {
   #app {
     grid-template-columns: 0.1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: 1fr;
     grid-template-areas: 'navbar body';
   }
 }

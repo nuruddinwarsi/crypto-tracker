@@ -56,12 +56,12 @@ export default {
   display: grid;
   grid-template-rows: repeat(2, 0.5fr);
   justify-items: center;
+  align-items: center;
   /* text-align: center; */
 }
 .navbar-link:hover,
 .navbar-link:focus {
-  background: linear-gradient(90deg, #a1c4fd, #c2e9fb 51%, #a1c4fd) var(--x, 0) /
-    200%;
+  border-bottom: 2px solid #a1c4fd;
   color: white;
   border-radius: 5px;
 }
@@ -77,7 +77,7 @@ export default {
   .navbar {
     height: 100%;
     grid-template-rows: repeat(3, 0.1fr);
-    grid-template-columns: auto;
+    grid-template-columns: 1fr;
     grid-template-areas:
       'item-1'
       'item-2'
@@ -88,6 +88,15 @@ export default {
     grid-template-rows: 1fr;
     grid-template-columns: 0.1fr 0.9fr;
   }
+
+  .navbar-link:hover,
+  .navbar-link:focus {
+    border-bottom: none;
+    border-left: 2px solid #a1c4fd;
+    color: white;
+    border-radius: 5px;
+  }
+
   /* .active {
     border-bottom: none;
     border-left: 2px solid #8edce6;
