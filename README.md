@@ -1,7 +1,7 @@
 # crypto-tracker
 
 ## Backend repo url
-[Backend repo url]https://github.com/nuruddinwarsi/crypto-tracker-backend)
+[Backend repo url](https://github.com/nuruddinwarsi/crypto-tracker-backend)
 
 ## Project setup
 ```
