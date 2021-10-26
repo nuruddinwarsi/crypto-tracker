@@ -51,9 +51,9 @@ export default {
   data() {
     return {
       form: {
-        username: 'nuruddin',
-        emailId: 'test@gmail.com',
-        password: 'Nuruddin@123',
+        username: '',
+        emailId: '',
+        password: '',
       },
     };
   },

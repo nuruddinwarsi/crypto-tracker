@@ -1,7 +1,7 @@
 <template>
   <div class="form-container">
     <div class="page-title">
-      <h1>Register</h1>
+      <h1>Login</h1>
     </div>
     <form name="form" class="form-body" @submit.prevent="loginUser">
       <div class="form-input">
@@ -26,7 +26,7 @@
       </div>
       <div class="form-input">
         <button type="submit" class="register">
-          Register
+          Login
         </button>
       </div>
     </form>
@@ -40,8 +40,8 @@ export default {
     return {
       form: {
         username: '',
-        emailId: '',
-        password: '',
+        emailId: 'test@gmail.com',
+        password: 'Nuruddin@123',
       },
     };
   },

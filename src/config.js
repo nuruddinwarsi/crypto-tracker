@@ -1,7 +1,7 @@
 const AppConfig = {
-  cryptoApi: 'https://api.coingecko.com/api',
+  cryptoApi: process.env.VUE_APP_CRYPTO_API,
   // apiBaseUrl: 'https://crypt0-portfolio-tracker.herokuapp.com/api',
-  apiBaseUrl: 'http://localhost:3000/api',
+  apiBaseUrl: process.env.VUE_APP_LOCAL_URL,
 };
 
 export default AppConfig;
