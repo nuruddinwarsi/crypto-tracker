@@ -40,8 +40,8 @@ export default {
     return {
       form: {
         username: '',
-        emailId: 'test@gmail.com',
-        password: 'Nuruddin@123',
+        emailId: '',
+        password: '',
       },
     };
   },
