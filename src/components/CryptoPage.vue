@@ -42,15 +42,10 @@ export default {
 
 <style scoped>
 .body-content {
-  grid-area: body;
-  overflow-y: scroll;
-  margin: 0 8px;
   display: grid;
-  grid-template-rows: 0.1fr 0.1fr 1fr; /* justify-items: center; */
+  grid-template-rows: 0.1fr 0.1fr 1fr;
 }
 .page-title {
-  /* justify-content: center; */
-  /* margin-bottom: 5rem; */
   grid-area: 'page-title';
   place-self: center;
   color: white;

@@ -49,6 +49,6 @@ body {
   display: grid;
   overflow-y: scroll;
   grid-template-columns: 1fr;
-  justify-items: center;
+  margin: 0 8px;
 }
 </style>

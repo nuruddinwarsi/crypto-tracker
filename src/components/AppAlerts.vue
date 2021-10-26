@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body-content">
     <h1>Alerts</h1>
   </div>
 </template>
@@ -10,4 +10,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.body-content {
+  justify-items: center;
+}
+</style>

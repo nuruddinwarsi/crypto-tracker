@@ -78,10 +78,6 @@ export default {
   grid-template-rows: 0.1fr 1fr;
 }
 
-.page-title {
-  /* margin-bottom: 32px; */
-}
-
 label {
   display: block;
 }

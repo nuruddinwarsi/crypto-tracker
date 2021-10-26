@@ -79,6 +79,9 @@ export default {
 </script>
 
 <style scoped>
+.body-content {
+  justify-items: center;
+}
 .rotate {
   width: 50%;
   place-self: center;
