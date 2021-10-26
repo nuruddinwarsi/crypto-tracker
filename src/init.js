@@ -5,6 +5,12 @@ import 'normalize.css';
 import Router from 'vue-router';
 Vue.use(Router);
 
+import VueCookies from 'vue-cookies';
+Vue.use(VueCookies);
+
+import Vuex from 'vuex';
+Vue.use(Vuex);
+
 import VueApexCharts from 'vue-apexcharts';
 Vue.use(VueApexCharts);
 Vue.component('apexchart', VueApexCharts);

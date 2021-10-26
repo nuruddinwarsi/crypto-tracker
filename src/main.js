@@ -8,7 +8,10 @@ import router from './router';
 
 Vue.config.productionTip = false;
 
+import store from '@/stores';
+
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount('#app');

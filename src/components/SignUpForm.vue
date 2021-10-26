@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { register } from '@/services/auth';
+// import { register } from '@/services/auth';
 
 export default {
   name: 'SignUpForm',
@@ -53,20 +53,20 @@ export default {
       form: {
         firstName: 'Nuruddin',
         lastName: 'Warsi',
-        username: '',
-        emailId: '',
-        password: '',
+        username: 'nuruddin',
+        emailId: 'test@gmail.com',
+        password: 'Nuruddin@123',
       },
     };
   },
   methods: {
-    async registerUser() {
-      try {
-        const data = await register(this.form);
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
+    registerUser() {
+      this.$store
+        .dispatch('register', this.form)
+        .then(() => this.$router.push({ name: 'SignUpForm' }))
+        .catch((error) => {
+          console.log(error.message);
+        });
     },
   },
 };
@@ -121,5 +121,6 @@ label {
 .form-input button:focus {
   transition: padding 0.3s;
   padding: 20px;
+  cursor: pointer;
 }
 </style>
