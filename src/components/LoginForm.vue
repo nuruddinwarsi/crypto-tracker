@@ -3,17 +3,7 @@
     <div class="page-title">
       <h1>Register</h1>
     </div>
-    <form name="form" class="form-body" @submit.prevent="registerUser">
-      <div class="form-input">
-        <label for="username">Username</label>
-        <input
-          name="username"
-          type="username"
-          placeholder="John Doe"
-          v-model="form.username"
-          required
-        />
-      </div>
+    <form name="form" class="form-body" @submit.prevent="loginUser">
       <div class="form-input">
         <label for="emailId">Email ID</label>
         <input
@@ -44,23 +34,21 @@
 </template>
 
 <script>
-// import { register } from '@/services/auth';
-
 export default {
   name: 'SignUpForm',
   data() {
     return {
       form: {
-        username: 'nuruddin',
-        emailId: 'test@gmail.com',
-        password: 'Nuruddin@123',
+        username: '',
+        emailId: '',
+        password: '',
       },
     };
   },
   methods: {
-    registerUser() {
+    loginUser() {
       this.$store
-        .dispatch('register', this.form)
+        .dispatch('login', this.form)
         .then(() => this.$router.push({ name: 'AppPortfolio' }))
         .catch((error) => {
           console.log(error.message);

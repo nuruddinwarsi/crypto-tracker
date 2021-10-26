@@ -7,6 +7,7 @@ import AppPortfolio from '@/components/AppPortfolio';
 import AppAlerts from '@/components/AppAlerts';
 import CryptoPage from '@/components/CryptoPage';
 import SignUpForm from '@/components/SignUpForm';
+import LoginForm from '@/components/LoginForm';
 
 const router = new Router({
   mode: 'history',
@@ -25,6 +26,11 @@ const router = new Router({
       name: 'SignUpForm',
       path: '/register',
       component: SignUpForm,
+    },
+    {
+      name: 'LoginForm',
+      path: '/login',
+      component: LoginForm,
     },
     {
       name: 'AppAlerts',

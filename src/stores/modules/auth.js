@@ -1,4 +1,4 @@
-import { register } from '@/services/auth';
+import { login, register } from '@/services/auth';
 import Vue from 'vue';
 
 const KEY_TOKEN = 'jwt';
@@ -29,8 +29,24 @@ const auth = {
   },
 
   actions: {
+    // Register vuex actions
     register({ commit }, credentials) {
       return register(credentials).then((data) => {
+        const { token, emailId, username } = data;
+        Vue.$cookies.set(KEY_TOKEN, token);
+        Vue.$cookies.set(KEY_EMAIL, emailId);
+        Vue.$cookies.set(KEY_NAME, username);
+
+        commit('setToken', token);
+        commit('setEmail', emailId);
+        commit('setName', username);
+        return username;
+      });
+    },
+
+    // Login vuex actions
+    login({ commit }, credentials) {
+      return login(credentials).then((data) => {
         const { token, emailId, username } = data;
         Vue.$cookies.set(KEY_TOKEN, token);
         Vue.$cookies.set(KEY_EMAIL, emailId);
