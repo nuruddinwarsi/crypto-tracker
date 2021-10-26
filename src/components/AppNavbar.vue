@@ -74,7 +74,7 @@ export default {
 }
 
 @media only screen and (min-width: 500px) {
-  .navbar {
+  /* .navbar {
     height: 100%;
     grid-template-rows: repeat(3, 0.1fr);
     grid-template-columns: 1fr;
@@ -95,7 +95,7 @@ export default {
     border-left: 2px solid #a1c4fd;
     color: white;
     border-radius: 5px;
-  }
+  } */
 
   /* .active {
     border-bottom: none;

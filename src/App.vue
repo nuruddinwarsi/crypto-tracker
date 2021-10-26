@@ -21,7 +21,7 @@ export default {
 
 @keyframes slideInFromLeft {
   0% {
-    transform: translateY(-100%);
+    transform: translateX(-100%);
   }
   100% {
     transform: translateX(0);
@@ -33,8 +33,10 @@ export default {
 }
 
 #app {
+  height: 100vh;
   display: grid;
-  grid-template-rows: auto;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
   grid-template-areas:
     'body'
     'navbar';
@@ -42,20 +44,22 @@ export default {
 }
 #navbar {
   grid-area: navbar;
-  align-self: end;
+  /* align-self: end; */
 }
 
 #main {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   grid-area: body;
   color: white;
+  overflow: auto;
   margin: 0 16px;
+  display: grid;
 }
 @media only screen and (min-width: 500px) {
-  #app {
+  /* #app {
     grid-template-columns: 0.1fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: 'navbar body';
-  }
+  } */
 }
 </style>

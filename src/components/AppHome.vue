@@ -1,7 +1,7 @@
 <template>
   <div class="body-content">
     <div class="page-title">
-      <h2>CryptoTracker</h2>
+      <h1>CryptoTracker</h1>
     </div>
     <div v-if="status === 'LOADING'" class="crypto-data">
       <img class="rotate" src="../assets/btc_logo.png" alt="" />
@@ -81,9 +81,9 @@ export default {
 <style scoped>
 /* From App.vue */
 .page-title {
-  display: grid;
-  justify-content: center;
-  margin-bottom: 5rem;
+  /* display: grid; */
+  /* justify-content: center; */
+  /* margin-bottom: 5rem; */
 }
 .rotate {
   width: 50%;
