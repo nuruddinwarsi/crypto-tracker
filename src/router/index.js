@@ -8,6 +8,7 @@ import AppAlerts from '@/components/AppAlerts';
 import CryptoPage from '@/components/CryptoPage';
 import SignUpForm from '@/components/SignUpForm';
 import LoginForm from '@/components/LoginForm';
+import store from '@/stores';
 
 const router = new Router({
   mode: 'history',
@@ -18,11 +19,6 @@ const router = new Router({
       component: AppHome,
     },
     {
-      name: 'AppPortfolio',
-      path: '/portfolio',
-      component: AppPortfolio,
-    },
-    {
       name: 'SignUpForm',
       path: '/register',
       component: SignUpForm,
@@ -31,6 +27,11 @@ const router = new Router({
       name: 'LoginForm',
       path: '/login',
       component: LoginForm,
+    },
+    {
+      name: 'AppPortfolio',
+      path: '/portfolio',
+      component: AppPortfolio,
     },
     {
       name: 'AppAlerts',
@@ -46,6 +47,15 @@ const router = new Router({
       props: true,
     },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  const allowedRoutes = ['AppHome', 'SignUpForm', 'LoginForm'];
+  if (!allowedRoutes.includes(to.name) && !store.getters.isAuthenticated) {
+    next({
+      name: 'LoginForm',
+    });
+  } else next();
 });
 
 export default router;
