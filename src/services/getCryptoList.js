@@ -1,7 +1,7 @@
 import axios from 'axios';
 import AppConfig from '@/config';
 
-const { apiBaseUrl } = AppConfig;
+const { cryptoApi } = AppConfig;
 
 const getCryptoList = async (
   vs_currency,
@@ -9,7 +9,7 @@ const getCryptoList = async (
   per_page,
   price_change_percentage
 ) => {
-  const response = await axios.get(`${apiBaseUrl}/v3/coins/markets`, {
+  const response = await axios.get(`${cryptoApi}/v3/coins/markets`, {
     params: {
       vs_currency: vs_currency,
       order: order,

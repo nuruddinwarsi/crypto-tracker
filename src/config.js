@@ -1,6 +1,7 @@
 const AppConfig = {
-  // apiBaseUrl: 'https://data.messari.io/api',
-  apiBaseUrl: 'https://api.coingecko.com/api',
+  cryptoApi: 'https://api.coingecko.com/api',
+  // apiBaseUrl: 'https://crypt0-portfolio-tracker.herokuapp.com/api',
+  apiBaseUrl: 'http://localhost:3000/api',
 };
 
 export default AppConfig;
