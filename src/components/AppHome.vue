@@ -79,12 +79,6 @@ export default {
 </script>
 
 <style scoped>
-/* From App.vue */
-.page-title {
-  /* display: grid; */
-  /* justify-content: center; */
-  /* margin-bottom: 5rem; */
-}
 .rotate {
   width: 50%;
   place-self: center;

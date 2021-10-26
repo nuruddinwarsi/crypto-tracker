@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <AppNavbar id="navbar"></AppNavbar>
     <RouterView id="main"></RouterView>
+    <AppNavbar id="navbar"></AppNavbar>
   </div>
 </template>
 
@@ -28,38 +28,27 @@ export default {
   }
 }
 * {
-  font-family: 'Chivo', sans-serif;
   animation: 1s ease-out 0s 1 slideInFromLeft;
+}
+body {
+  font-family: 'Chivo', sans-serif;
+  overflow: hidden;
 }
 
 #app {
+  background: #121212;
   height: 100vh;
+  width: 100vw;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr auto;
-  grid-template-areas:
-    'body'
-    'navbar';
-  background: #121212;
-}
-#navbar {
-  grid-area: navbar;
-  /* align-self: end; */
 }
 
 #main {
-  /* min-height: 100vh; */
-  grid-area: body;
   color: white;
-  overflow: auto;
-  margin: 0 16px;
   display: grid;
-}
-@media only screen and (min-width: 500px) {
-  /* #app {
-    grid-template-columns: 0.1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: 'navbar body';
-  } */
+  overflow-y: scroll;
+  grid-template-columns: 1fr;
+  justify-items: center;
 }
 </style>
