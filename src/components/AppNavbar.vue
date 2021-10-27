@@ -41,13 +41,11 @@
 </template>
 
 <script>
-import store from '@/stores';
-
 export default {
   name: 'AppNavbar',
   computed: {
     isAuthenticated() {
-      return store.getters.isAuthenticated;
+      return this.$store.getters.isAuthenticated;
     },
   },
 };

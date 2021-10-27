@@ -1,17 +1,17 @@
 <template>
   <div class="body-content">
-    <h1>Alerts</h1>
+    <PageHeader :header="`Alerts`" />
   </div>
 </template>
 
 <script>
+import PageHeader from '@/components/utils/PageHeader';
 export default {
   name: 'AppAlerts',
+  components: {
+    PageHeader,
+  },
 };
 </script>
 
-<style scoped>
-.body-content {
-  justify-items: center;
-}
-</style>
+<style scoped></style>

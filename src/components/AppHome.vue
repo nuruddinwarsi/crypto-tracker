@@ -1,8 +1,6 @@
 <template>
   <div class="body-content">
-    <div class="page-title">
-      <h1>CryptoTracker</h1>
-    </div>
+    <PageHeader :header="`CryptoTracker`" />
     <div v-if="status === 'LOADING'" class="crypto-data">
       <img class="rotate" src="../assets/btc_logo.png" alt="" />
       <div class="banner">
@@ -29,11 +27,13 @@
 <script>
 import { getCryptoList } from '@/services/getCryptoList';
 import CryptoCard from '@/components/CryptoCard';
+import PageHeader from '@/components/utils/PageHeader';
 
 export default {
   name: 'AppHome',
   components: {
     CryptoCard,
+    PageHeader,
   },
   data() {
     return {
@@ -51,6 +51,7 @@ export default {
       message: 'FETCHING LIST ... ',
     };
   },
+
   methods: {
     async getCryptoList() {
       try {
@@ -79,9 +80,6 @@ export default {
 </script>
 
 <style scoped>
-.body-content {
-  justify-items: center;
-}
 .rotate {
   width: 50%;
   place-self: center;
