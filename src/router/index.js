@@ -8,6 +8,8 @@ import AppAlerts from '@/components/AppAlerts';
 import CryptoPage from '@/components/CryptoPage';
 import SignUpForm from '@/components/SignUpForm';
 import LoginForm from '@/components/LoginForm';
+import PageNotFound from '@/components/PageNotFound';
+
 import store from '@/stores';
 
 const router = new Router({
@@ -45,6 +47,11 @@ const router = new Router({
       path: '/crypto/:coin/symbol/:symbol',
       component: CryptoPage,
       props: true,
+    },
+    {
+      name: 'PageNotFound',
+      path: '/*',
+      component: PageNotFound,
     },
   ],
 });
