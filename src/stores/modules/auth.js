@@ -58,6 +58,18 @@ const auth = {
         return username;
       });
     },
+
+    logout({ commit }) {
+      Vue.$cookies.remove(KEY_TOKEN);
+      Vue.$cookies.remove(KEY_EMAIL);
+      Vue.$cookies.remove(KEY_NAME);
+
+      commit('setToken', '');
+      commit('setEmail', '');
+      commit('setName', '');
+
+      return Promise.resolve();
+    },
   },
 };
 

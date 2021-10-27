@@ -1,7 +1,7 @@
 <template>
   <div class="page-title">
     <h1>{{ header }}</h1>
-    <button v-if="isAuthenticated">Logout</button>
+    <button v-if="isAuthenticated" @click="logout()">Logout</button>
   </div>
 </template>
 
@@ -12,6 +12,15 @@ export default {
     header: {
       type: String,
       default: '',
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout').then(() =>
+        this.$router.push({
+          name: 'LoginForm',
+        })
+      );
     },
   },
   computed: {
@@ -40,5 +49,13 @@ export default {
   background: linear-gradient(90deg, #a1c4fd, #c2e9fb 51%, #a1c4fd) var(--x, 0) /
     200%;
   color: white;
+}
+.page-title button:hover,
+.page-title button:focus {
+  cursor: pointer;
+}
+
+.page-title button:active {
+  transform: translateY(4px);
 }
 </style>
