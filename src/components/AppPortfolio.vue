@@ -3,7 +3,7 @@
     <PageHeader :header="`Portfolio`" />
     <div class="portfolio">
       <div v-for="(coinGroup, index) in coinData" :key="index">
-        <CoinGroup :coinGroup="coinGroup" class="coin-group" />
+        <CoinGroup :coinGroup="coinGroup" />
       </div>
     </div>
   </div>
@@ -64,13 +64,6 @@ export default {
   grid-template-columns: 1fr;
   grid-template-rows: 0.5fr;
   max-height: 250px;
-}
-
-.coin-group {
-  border: 1px solid rgb(223, 223, 223);
-  border-radius: 5px;
-  padding: 16px;
-  margin-bottom: 16px;
 }
 
 @media only screen and (min-width: 700px) {
