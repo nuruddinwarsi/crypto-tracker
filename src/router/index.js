@@ -4,7 +4,7 @@ import Router from 'vue-router';
 // Import all pages/components
 import AppHome from '@/components/AppHome';
 import AppPortfolio from '@/components/AppPortfolio';
-import AppAlerts from '@/components/AppAlerts';
+import AddToPortfolio from '@/components/AddToPortfolio';
 import CryptoPage from '@/components/CryptoPage';
 import SignUpForm from '@/components/SignUpForm';
 import LoginForm from '@/components/LoginForm';
@@ -36,9 +36,9 @@ const router = new Router({
       component: AppPortfolio,
     },
     {
-      name: 'AppAlerts',
+      name: 'AddToPortfolio',
       path: '/alerts',
-      component: AppAlerts,
+      component: AddToPortfolio,
     },
 
     // Dynamic route for individual cryptocurrency
