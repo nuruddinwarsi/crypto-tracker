@@ -73,12 +73,12 @@ export default {
   margin-bottom: 16px;
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 700px) {
   .portfolio {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1100px) {
   .portfolio {
     grid-template-columns: repeat(3, 1fr);
   }
