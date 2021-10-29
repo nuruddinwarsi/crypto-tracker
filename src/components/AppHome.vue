@@ -1,11 +1,9 @@
 <template>
   <div class="body-content">
     <PageHeader :header="`CryptoTracker`" />
-    <div v-if="status === 'LOADING'" class="msg-box">
-      <div class="banner">
-        <img class="rotate" src="../assets/btc_logo.png" alt="" />
-        <p>{{ message }}</p>
-      </div>
+    <div v-if="status === 'LOADING'">
+      <img class="rotate" src="../assets/btc_logo.png" alt="loading icon" />
+      <AppBanner :bannerColour="bannerColour" :message="message" />
     </div>
     <div class="crypto-data" v-if="status === 'LOADED'">
       <div class="column-header">
@@ -18,10 +16,8 @@
         <CryptoCard :crypto="crypto" :key="crypto.id" />
       </div>
     </div>
-    <div v-if="status === 'ERROR'" class="msg-box">
-      <div class="banner">
-        {{ error }}
-      </div>
+    <div v-if="status === 'ERROR'">
+      <AppBanner :bannerColour="bannerColour" :message="message" />
     </div>
   </div>
 </template>
@@ -30,12 +26,14 @@
 import { getCryptoList } from '@/services/getCryptoList';
 import CryptoCard from '@/components/CryptoCard';
 import PageHeader from '@/components/utils/PageHeader';
+import AppBanner from '@/components/utils/AppBanner';
 
 export default {
   name: 'AppHome',
   components: {
     CryptoCard,
     PageHeader,
+    AppBanner,
   },
   data() {
     return {
@@ -51,6 +49,9 @@ export default {
       status: 'LOADING',
       error: null,
       message: 'FETCHING LIST ... ',
+
+      // Banner colour
+      bannerColour: 'default',
     };
   },
 
@@ -58,6 +59,7 @@ export default {
     async getCryptoList() {
       try {
         this.status = 'LOADING';
+        this.bannerColour = 'default';
         const data = await getCryptoList(
           this.vs_currency,
           this.order,
@@ -65,10 +67,14 @@ export default {
           this.price_change_percentage
         );
         this.cryptoList = data;
+        this.bannerColour = 'success';
         this.status = 'LOADED';
         // console.log(data);
       } catch (error) {
         this.error = error;
+        console.log(this.error);
+        this.message = 'Cannot fetch prices, Please try again';
+        this.bannerColour = 'error';
         this.status = 'ERROR';
         // console.log(error);
       }
@@ -102,17 +108,6 @@ export default {
   }
 }
 
-.msg-box {
-  display: grid;
-}
-.banner {
-  margin: 8px;
-  padding: 32px;
-  background-color: #666666;
-  border-radius: 5px;
-  box-shadow: 2px 2px 2px 1px rgba(108, 104, 108, 0.5);
-  place-self: center;
-}
 .crypto-data {
   display: grid;
   justify-content: center;
