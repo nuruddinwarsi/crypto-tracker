@@ -56,7 +56,7 @@ export default {
     async getCryptoList() {
       try {
         this.status = 'LOADING';
-        this.bannerColour = 'default';
+        this.message = 'FETCHING PRICES ...';
         const data = await getCryptoList(
           this.vs_currency,
           this.order,
@@ -64,10 +64,10 @@ export default {
           this.price_change_percentage
         );
         this.cryptoList = data;
+        this.message = 'DATA FETCHED';
         this.status = 'LOADED';
       } catch (error) {
         this.error = error;
-        console.log(this.error);
         this.message = 'Cannot fetch prices, Please try again';
         this.status = 'ERROR';
       }

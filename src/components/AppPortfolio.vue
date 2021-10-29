@@ -1,10 +1,20 @@
 <template>
   <div class="body-content">
     <PageHeader :header="`Portfolio`" />
-    <div class="portfolio">
+
+    <div v-if="status === 'LOADING'">
+      <img class="rotate" src="../assets/btc_logo.png" alt="loading icon" />
+      <AppBanner :status="status" :message="message" />
+    </div>
+
+    <div class="portfolio" v-if="status === 'LOADED'">
       <div v-for="(coinGroup, index) in coinData" :key="index">
         <CoinGroup :coinGroup="coinGroup" />
       </div>
+    </div>
+
+    <div v-if="status === 'ERROR'">
+      <AppBanner :status="status" :message="message" />
     </div>
   </div>
 </template>
@@ -24,16 +34,29 @@ export default {
     return {
       portfolioData: '',
       coinData: {},
+
+      // AppSpinner data
+      status: 'LOADING',
+      error: null,
+      message: 'FETCHING LIST ... ',
     };
   },
   methods: {
     async callGetPortfolio() {
       try {
+        this.status = 'LOADING';
+        this.message = 'FETCHING PRICES ...';
+
         const response = await getPortfolio();
         this.portfolioData = response.data;
         this.createPortfolioSummary(this.portfolioData);
+
+        this.message = 'DATA FETCHED';
+        this.status = 'LOADED';
       } catch (error) {
-        console.log(error);
+        this.error = error;
+        this.message = 'CANNOT FETCH YOUR PORTFOLIO';
+        this.status = 'ERROR';
       }
     },
     createPortfolioSummary(portfolioData) {
