@@ -1,56 +1,92 @@
 <template>
-  <div class="form-container">
-    <div class="page-title">
-      <h1>Login</h1>
-    </div>
-    <form name="form" class="form-body" @submit.prevent="loginUser">
-      <div class="form-input">
-        <label for="emailId">Email ID</label>
+  <div class="body-container">
+    <PageHeader :header="`Login Page`" />
+
+    <form class="form" @submit.prevent="loginUser">
+      <div class="form-header">
+        <div class="title">Welcome</div>
+        <div class="subtitle">Please login</div>
+        <div class="register">
+          <router-link to="/register" class="register-link">Signup</router-link>
+        </div>
+      </div>
+      <div class="input-container ic1">
         <input
-          name="emailId"
-          type="emailId"
-          placeholder="john.doe@gmail.com"
+          type="email"
+          name="email"
+          id="email"
+          class="input"
           v-model="form.emailId"
-          required
         />
+        <div class="cut"></div>
+        <label for="email" class="placeholder">Email ID</label>
       </div>
-      <div class="form-input">
-        <label for="password">Password</label>
+
+      <div class="input-container ic2">
         <input
-          name="password"
+          id="password"
+          class="input"
           type="password"
-          placeholder="********"
+          placeholder=" "
           v-model="form.password"
-          required
         />
+        <div class="cut"></div>
+        <label for="coinName" class="placeholder">Password</label>
       </div>
-      <div class="form-input">
-        <button type="submit" class="register">
-          Login
-        </button>
-      </div>
+
+      <button type="submit" class="submit">
+        Login
+      </button>
     </form>
+    <div v-if="clickedOnLogin">
+      <div v-if="status === 'LOADING'">
+        <AppBanner :status="status" :message="message" />
+      </div>
+      <div v-else-if="status === 'ERROR'">
+        <AppBanner :status="status" :message="message" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import PageHeader from '@/components/utils/PageHeader';
+import AppBanner from '@/components/utils/AppBanner';
+
 export default {
   name: 'SignUpForm',
+  components: {
+    PageHeader,
+    AppBanner,
+  },
   data() {
     return {
       form: {
-        username: '',
         emailId: '',
         password: '',
+
+        // AppSpinner data
+        status: 'LOADING',
+        error: null,
+        message: 'LOGGING YOU IN ',
+        clickedOnLogin: false,
       },
     };
   },
   methods: {
     loginUser() {
+      this.clickedOnLogin = !this.clickedOnLogin;
+
       this.$store
         .dispatch('login', this.form)
-        .then(() => this.$router.push({ name: 'AppPortfolio' }))
+        .then(() => {
+          this.status = 'LOADED';
+          this.$router.push({ name: 'AppHome' });
+        })
         .catch((error) => {
+          this.status = 'ERROR';
+          this.error = error;
+          this.message = 'Credentials do not match';
           console.log(error.message);
         });
     },
@@ -59,50 +95,165 @@ export default {
 </script>
 
 <style scoped>
-.form-container {
-  display: grid;
+.body-content {
+  grid-template-columns: 1fr;
   grid-template-rows: 0.1fr 1fr;
 }
 
-label {
-  display: block;
-}
-.form-body {
-  max-height: 70%;
-  display: grid;
-  align-items: center;
-  row-gap: 0px;
-  grid-template-rows: auto;
-}
-.form-input {
-  display: grid;
-  max-width: 768px;
-}
-
-.form-input input {
+.form {
   background-color: #202020;
+  color: #8edce6;
   border-radius: 5px;
-  border: none;
-  padding: 16px;
-  margin-top: 8px;
-}
-.form-input input:focus,
-.form-input input:hover {
+  box-sizing: border-box;
   padding: 20px;
-  transition: padding 0.5s;
+  display: grid;
+}
+.form-header {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: 0.5fr 1fr;
+}
+.title {
+  color: #eee;
+  font-size: 36px;
+  font-weight: 600;
+  margin-top: 30px;
 }
 
-.form-input button {
-  padding: 16px;
-  border-radius: 5px;
-  border: none;
+.subtitle {
+  color: #eee;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.input-container {
+  height: 50px;
+  position: relative;
+  width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ic1 {
+  /* margin-top: 20px; */
+}
+
+.ic2 {
+  margin-top: 30px;
+}
+
+.input {
   background: linear-gradient(90deg, #a1c4fd, #c2e9fb 51%, #a1c4fd) var(--x, 0) /
     200%;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #212121;
+  font-size: 18px;
+  height: 100%;
+  outline: 0;
+  padding: 4px 20px 0;
+  width: 100%;
 }
-.form-input button:hover,
-.form-input button:focus {
-  transition: padding 0.3s;
-  padding: 20px;
+
+.cut {
+  background-color: #202020;
+  border-radius: 10px;
+  height: 20px;
+  left: 20px;
+  position: absolute;
+  top: -20px;
+  transform: translateY(0);
+  transition: transform 200ms;
+  width: 76px;
+}
+
+.cut-short {
+  width: 50px;
+}
+
+.input:focus ~ .cut,
+.input:not(:placeholder-shown) ~ .cut {
+  transform: translateY(8px);
+}
+
+.placeholder {
+  color: #65657b;
+  left: 20px;
+  line-height: 14px;
+  pointer-events: none;
+  position: absolute;
+  transform-origin: 0 50%;
+  transition: transform 200ms, color 200ms;
+  top: 20px;
+}
+
+.input:focus ~ .placeholder,
+.input:not(:placeholder-shown) ~ .placeholder {
+  transform: translateY(-30px) translateX(10px) scale(0.75);
+}
+
+.input:not(:placeholder-shown) ~ .placeholder {
+  color: #808097;
+}
+
+.input:focus ~ .placeholder {
+  color: #dc2f55;
+}
+
+.submit {
+  background-color: #08d;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
   cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  outline: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.submit:active {
+  background-color: #06b;
+}
+
+.register {
+  background: linear-gradient(90deg, #84fab0, #c2e9fb 51%, #84fab0) var(--x, 0) /
+    200%;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  outline: 0;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.register:active {
+  background-color: #06b;
+}
+
+.register-link {
+  text-decoration: none;
+  color: black;
+}
+
+@media only screen and (min-width: 500px) {
+  .form {
+    width: 499px;
+    place-self: center;
+  }
 }
 </style>

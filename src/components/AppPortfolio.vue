@@ -23,12 +23,14 @@
 import PageHeader from '@/components/utils/PageHeader';
 import { getPortfolio } from '@/services/getPortfolio';
 import CoinGroup from '@/components/CoinGroup';
+import AppBanner from '@/components/utils/AppBanner';
 
 export default {
   name: 'AppPortfolio',
   components: {
     PageHeader,
     CoinGroup,
+    AppBanner,
   },
   data() {
     return {
