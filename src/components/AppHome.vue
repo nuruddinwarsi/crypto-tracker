@@ -1,9 +1,9 @@
 <template>
   <div class="body-content">
     <PageHeader :header="`CryptoTracker`" />
-    <div v-if="status === 'LOADING'" class="crypto-data">
-      <img class="rotate" src="../assets/btc_logo.png" alt="" />
+    <div v-if="status === 'LOADING'" class="msg-box">
       <div class="banner">
+        <img class="rotate" src="../assets/btc_logo.png" alt="" />
         <p>{{ message }}</p>
       </div>
     </div>
@@ -18,8 +18,10 @@
         <CryptoCard :crypto="crypto" :key="crypto.id" />
       </div>
     </div>
-    <div v-if="status === 'ERROR'" class="crypto-data banner">
-      {{ error }}
+    <div v-if="status === 'ERROR'" class="msg-box">
+      <div class="banner">
+        {{ error }}
+      </div>
     </div>
   </div>
 </template>
@@ -80,6 +82,11 @@ export default {
 </script>
 
 <style scoped>
+.banner2 {
+  display: grid;
+  justify-items: center;
+}
+
 .rotate {
   width: 50%;
   place-self: center;
@@ -94,12 +101,17 @@ export default {
     transform: rotate(359deg);
   }
 }
+
+.msg-box {
+  display: grid;
+}
 .banner {
-  margin: 0.5rem;
-  padding: 1rem;
+  margin: 8px;
+  padding: 32px;
   background-color: #666666;
   border-radius: 5px;
   box-shadow: 2px 2px 2px 1px rgba(108, 104, 108, 0.5);
+  place-self: center;
 }
 .crypto-data {
   display: grid;
