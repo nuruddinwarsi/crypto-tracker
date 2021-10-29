@@ -107,6 +107,8 @@ export default {
   box-sizing: border-box;
   padding: 20px;
   display: grid;
+  margin: 10px;
+  grid-template-rows: 0.1fr 0.4fr 0.1fr;
 }
 .form-header {
   display: grid;
