@@ -3,7 +3,7 @@
     <PageHeader :header="`CryptoTracker`" />
     <div v-if="status === 'LOADING'">
       <img class="rotate" src="../assets/btc_logo.png" alt="loading icon" />
-      <AppBanner :bannerColour="bannerColour" :message="message" />
+      <AppBanner :status="status" :message="message" />
     </div>
     <div class="crypto-data" v-if="status === 'LOADED'">
       <div class="column-header">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div v-if="status === 'ERROR'">
-      <AppBanner :bannerColour="bannerColour" :message="message" />
+      <AppBanner :status="status" :message="message" />
     </div>
   </div>
 </template>
@@ -49,9 +49,6 @@ export default {
       status: 'LOADING',
       error: null,
       message: 'FETCHING LIST ... ',
-
-      // Banner colour
-      bannerColour: 'default',
     };
   },
 
@@ -67,16 +64,12 @@ export default {
           this.price_change_percentage
         );
         this.cryptoList = data;
-        this.bannerColour = 'success';
         this.status = 'LOADED';
-        // console.log(data);
       } catch (error) {
         this.error = error;
         console.log(this.error);
         this.message = 'Cannot fetch prices, Please try again';
-        this.bannerColour = 'error';
         this.status = 'ERROR';
-        // console.log(error);
       }
     },
   },

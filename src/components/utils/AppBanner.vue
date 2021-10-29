@@ -10,9 +10,9 @@
 export default {
   name: 'AppBanner',
   props: {
-    bannerColour: {
+    status: {
       type: String,
-      default: 'default',
+      default: 'LOADING',
     },
     message: {
       type: String,
@@ -22,9 +22,9 @@ export default {
   computed: {
     changeBannerColor() {
       return {
-        success: this.bannerColour === 'success',
-        default: this.bannerColour === 'default',
-        error: this.bannerColour === 'error',
+        LOADED: this.status === 'LOADED',
+        LOADING: this.status === 'LOADING',
+        ERROR: this.status === 'ERROR',
       };
     },
   },
@@ -42,15 +42,15 @@ export default {
   place-self: center;
 }
 
-.default {
+.LOADING {
   color: #00529b;
   background-color: #bde5f8;
 }
-.error {
+.ERROR {
   color: #d8000c;
   background-color: #ffd2d2;
 }
-.success {
+.LOADED {
   color: #4f8a10;
   background-color: #dff2bf;
 }
