@@ -10,7 +10,7 @@
           name="date"
           id="date"
           class="input"
-          v-model="form.inputDate"
+          v-model="inputDate"
         />
         <div class="cut"></div>
         <label for="date" class="placeholder">Date</label>
@@ -21,7 +21,7 @@
           class="input"
           type="text"
           placeholder=" "
-          v-model="form.coinId"
+          v-model="coinId"
         />
         <div class="cut"></div>
         <label for="coinId" class="placeholder">Coin ID</label>
@@ -32,18 +32,31 @@
           class="input"
           type="text"
           placeholder=" "
-          v-model="form.coinName"
+          v-model="coinName"
         />
         <div class="cut"></div>
         <label for="coinName" class="placeholder">Coin name</label>
       </div>
+
+      <div class="input-container ic2">
+        <input
+          id="quantity"
+          class="input"
+          type="number"
+          placeholder=" "
+          v-model="quantity"
+        />
+        <div class="cut"></div>
+        <label for="quantity" class="placeholder">Quantity</label>
+      </div>
+
       <div class="input-container ic2">
         <input
           id="amount"
           class="input"
           type="number"
           placeholder=" "
-          v-model="form.amount"
+          v-model="amount"
         />
         <div class="cut"></div>
         <label for="amount" class="placeholder">Amount</label>
@@ -54,18 +67,33 @@
           class="input"
           type="number"
           placeholder=" "
-          v-model="form.boughtAt"
+          v-model="boughtAt"
         />
         <div class="cut"></div>
         <label for="boughtAt" class="placeholder">Price</label>
       </div>
-      <button type="text" class="submit">submit</button>
+      <div class="input-container ic2">
+        <input
+          id="boughtFrom"
+          class="input"
+          type="text"
+          placeholder=" "
+          v-model="boughtFrom"
+        />
+        <div class="cut"></div>
+        <label for="boughtFrom" class="placeholder">Platform</label>
+      </div>
+      <button type="submit" class="submit" @click="callAddToPortfolio()">
+        Add
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 import PageHeader from '@/components/utils/PageHeader';
+import { addToPortfolio } from '@/services/addToPortfolio';
+
 export default {
   name: 'AddToPortfolio',
   components: {
@@ -73,15 +101,32 @@ export default {
   },
   data() {
     return {
-      form: {
-        coinId: '',
-        coinName: '',
-        quantity: 0,
-        amount: 0,
-        boughtAt: 0,
-        inputDate: new Date().toISOString().slice(0, 10),
-      },
+      coinId: '',
+      coinName: '',
+      quantity: 0,
+      amount: 0,
+      boughtAt: 0,
+      boughtFrom: '',
+      inputDate: new Date().toISOString().slice(0, 10),
     };
+  },
+  methods: {
+    async callAddToPortfolio() {
+      try {
+        const data = await addToPortfolio(
+          this.coinId,
+          this.coinName,
+          this.quantity,
+          this.amount,
+          this.boughtAt,
+          this.boughtFrom,
+          this.inputDate
+        );
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 };
 </script>
