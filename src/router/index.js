@@ -57,7 +57,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  const allowedRoutes = ['AppHome', 'SignUpForm', 'LoginForm'];
+  const allowedRoutes = ['AppHome', 'SignUpForm', 'LoginForm', 'CryptoPage'];
   if (!allowedRoutes.includes(to.name) && !store.getters.isAuthenticated) {
     next({
       name: 'LoginForm',
