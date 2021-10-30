@@ -2,7 +2,9 @@
   <div class="body-content">
     <PageHeader :header="`CryptoTracker`" />
     <div v-if="status === 'LOADING'">
-      <img class="rotate" src="../assets/btc_logo.png" alt="loading icon" />
+      <div class="crypto-data">
+        <img class="rotate" src="../assets/btc_logo.png" alt="loading icon" />
+      </div>
       <AppBanner :status="status" :message="message" />
     </div>
     <div class="crypto-data" v-if="status === 'LOADED'">
@@ -17,6 +19,9 @@
       </div>
     </div>
     <div v-if="status === 'ERROR'">
+      <!-- <div class="crypto-data">
+        <img class="rotate" src="../assets/btc_logo.png" alt="loading icon" />
+      </div> -->
       <AppBanner :status="status" :message="message" />
     </div>
   </div>
@@ -110,10 +115,6 @@ export default {
   grid-template-columns: repeat(4, 1fr);
 }
 .crypto-list {
-  /* display: grid; */
   margin: 10px;
 }
-/* .coin-image {
-  width: 50px;
-} */
 </style>
