@@ -86,9 +86,9 @@ export default {
 </script>
 
 <style scoped>
-.banner2 {
-  display: grid;
-  justify-items: center;
+.body-content {
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.1fr 1fr;
 }
 
 .rotate {

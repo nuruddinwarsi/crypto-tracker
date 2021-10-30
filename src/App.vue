@@ -49,7 +49,6 @@ body {
   display: grid;
   overflow-y: scroll;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.1fr 1fr;
   margin: 0 8px;
 }
 </style>

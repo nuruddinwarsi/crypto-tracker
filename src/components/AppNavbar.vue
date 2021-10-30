@@ -74,19 +74,17 @@ export default {
   grid-template-rows: repeat(2, 0.5fr);
   justify-items: center;
   align-items: center;
-  /* text-align: center; */
-}
-.navbar-link:hover,
-.navbar-link:focus {
-  border-bottom: 2px solid #a1c4fd;
-  color: white;
-  border-radius: 5px;
 }
 
 .active {
+  color: #212121;
   background: linear-gradient(90deg, #a1c4fd, #c2e9fb 51%, #a1c4fd) var(--x, 0) /
     200%;
-  color: white;
   border-radius: 5px;
+}
+
+.navbar-link:hover,
+.navbar-link:focus {
+  border-bottom: 3px solid #a1c4fd;
 }
 </style>
