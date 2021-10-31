@@ -67,7 +67,7 @@
           </div>
         </div>
 
-        <div class="market-data" v-if="showStats">
+        <div class="market-data" v-if="$screen.width > 768 || showStats">
           <div class="market-cap md">
             <div class="title">Market Cap</div>
             <div class="value">₹{{ coinData.market_data.market_cap.inr }}</div>
@@ -314,6 +314,7 @@ export default {
 .value {
   font-size: 16px;
 }
+
 .submit {
   background-color: #08d;
   border-radius: 5px;
@@ -325,6 +326,7 @@ export default {
   width: 120px;
   padding: 8px;
 }
+
 .candlestick {
   margin: 16px 0;
 }

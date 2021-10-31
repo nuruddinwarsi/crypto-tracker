@@ -19,6 +19,30 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Chivo&display=swap');
 
+@-webkit-keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@-moz-keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@-o-keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 @keyframes slideInFromLeft {
   0% {
     transform: translateX(-100%);
@@ -27,12 +51,11 @@ export default {
     transform: translateX(0);
   }
 }
-* {
-  animation: 1s ease-out 0s 1 slideInFromLeft;
-}
+
 body {
   font-family: 'Chivo', sans-serif;
   overflow: hidden;
+  animation: 1s ease-out 0s 1 slideInFromLeft;
 }
 
 #app {
