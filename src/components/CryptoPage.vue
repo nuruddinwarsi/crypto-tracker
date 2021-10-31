@@ -66,7 +66,8 @@
             </div>
           </div>
         </div>
-        <div class="market-data">
+
+        <div class="market-data" v-if="showStats">
           <div class="market-cap md">
             <div class="title">Market Cap</div>
             <div class="value">₹{{ coinData.market_data.market_cap.inr }}</div>
@@ -84,6 +85,13 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="toggle-stats">
+        <button @click="toggleStats()" class="submit">
+          <span v-if="showStats">Hide</span>
+          <span v-else-if="!showStats">Show</span>
+          Stats
+        </button>
       </div>
     </div>
     <div class="coin-data" v-else-if="status === `ERROR`">
@@ -128,6 +136,7 @@ export default {
       currentPrice: 0,
       priceChange: 0,
       pctChange: 0,
+      showStats: false,
 
       // AppSpinner data
       status: 'LOADING',
@@ -150,6 +159,9 @@ export default {
         this.message = 'CANNOT FETCH THE DATA';
         this.status = 'ERROR';
       }
+    },
+    toggleStats() {
+      this.showStats = !this.showStats;
     },
   },
   computed: {
@@ -301,6 +313,17 @@ export default {
 .value {
   font-size: 16px;
 }
+.submit {
+  background-color: #08d;
+  border-radius: 5px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  cursor: pointer;
+  text-align: center;
+  width: 120px;
+  padding: 8px;
+}
 .candlestick {
   margin: 16px 0;
 }
@@ -338,7 +361,12 @@ export default {
     font-size: 16px;
   }
   .value {
-    font-size: 26px;
+    font-size: 18px;
+  }
+}
+@media only screen and (min-width: 1100px) {
+  .value {
+    font-size: 25px;
   }
 }
 </style>
