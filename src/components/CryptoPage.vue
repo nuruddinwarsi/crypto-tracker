@@ -86,7 +86,7 @@
           </div>
         </div>
       </div>
-      <div class="toggle-stats">
+      <div class="toggle-stats" v-if="$screen.width <= 768">
         <button @click="toggleStats()" class="submit">
           <span v-if="showStats">Hide</span>
           <span v-else-if="!showStats">Show</span>
@@ -137,6 +137,7 @@ export default {
       priceChange: 0,
       pctChange: 0,
       showStats: false,
+      width: document.documentElement.clientWidth,
 
       // AppSpinner data
       status: 'LOADING',

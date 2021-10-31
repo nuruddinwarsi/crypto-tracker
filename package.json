@@ -20,6 +20,7 @@
     "vue-apexcharts": "^1.6.2",
     "vue-cookies": "^1.7.4",
     "vue-router": "^3.5.2",
+    "vue-screen": "^1.5.6",
     "vue-trading-view": "^1.0.1",
     "vuex": "^3.6.2"
   },

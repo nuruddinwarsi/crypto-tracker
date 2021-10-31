@@ -32,3 +32,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 library.add(faHome, faUser, faBitcoin, faBell, faLink, faReddit, faGithub);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+import VueScreen from 'vue-screen';
+Vue.use(VueScreen);
