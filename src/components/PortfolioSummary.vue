@@ -6,6 +6,7 @@
 
 <script>
 import PageHeader from '@/components/utils/PageHeader';
+import { getPortfolioSummary } from '@/services/getPortfolioSummary';
 
 export default {
   name: 'PortfolioSummary',
@@ -17,6 +18,20 @@ export default {
       coinId: this.$route.params.coinId,
     };
   },
+  methods: {
+    async portfolioSummaryCall() {
+      try {
+        const data = await getPortfolioSummary(this.coinId);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+  created() {
+    this.portfolioSummaryCall();
+  },
+  mounted() {},
 };
 </script>
 
