@@ -9,6 +9,7 @@ import CryptoPage from '@/components/CryptoPage';
 import SignUpForm from '@/components/SignUpForm';
 import LoginForm from '@/components/LoginForm';
 import PageNotFound from '@/components/PageNotFound';
+import PortfolioSummary from '@/components/PortfolioSummary';
 
 import store from '@/stores';
 
@@ -34,6 +35,12 @@ const router = new Router({
       name: 'AppPortfolio',
       path: '/portfolio',
       component: AppPortfolio,
+    },
+    {
+      name: 'PortfolioSummary',
+      path: '/portfolio/:coinId',
+      component: PortfolioSummary,
+      props: true,
     },
     {
       name: 'AddToPortfolio',

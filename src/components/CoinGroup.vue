@@ -32,7 +32,7 @@
         <span class="value">{{ coinSummary.percentChange }}%</span>
       </div>
 
-      <button class="summary">
+      <button class="summary" @click="navigateToSummary">
         <span>Summary</span>
       </button>
     </div>
@@ -67,6 +67,12 @@ export default {
     };
   },
   methods: {
+    navigateToSummary() {
+      return this.$router.push({
+        name: 'PortfolioSummary',
+        params: { coinId: this.coinSummary.coinId },
+      });
+    },
     toggleDropDown() {
       this.showDescription = !this.showDescription;
     },
