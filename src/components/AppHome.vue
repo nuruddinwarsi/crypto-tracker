@@ -7,7 +7,7 @@
       </div>
       <AppBanner :status="status" :message="message" />
     </div>
-    <div class="crypto-data" v-if="status === 'LOADED'">
+    <div class="crypto-data" v-else-if="status === 'LOADED'">
       <div class="column-header">
         <div></div>
         <div>Coin</div>
@@ -18,7 +18,7 @@
         <CryptoCard :crypto="crypto" :key="crypto.id" />
       </div>
     </div>
-    <div v-if="status === 'ERROR'">
+    <div v-else-if="status === 'ERROR'">
       <!-- <div class="crypto-data">
         <img class="rotate" src="../assets/btc_logo.png" alt="loading icon" />
       </div> -->
