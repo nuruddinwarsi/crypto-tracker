@@ -97,11 +97,35 @@ export default {
   animation: rotation 5s infinite linear;
 }
 
-@keyframes rotation {
-  from {
+@-webkit-keyframes rotation {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
+    transform: rotate(359deg);
+  }
+}
+@-moz-keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+@-o-keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
     transform: rotate(359deg);
   }
 }
