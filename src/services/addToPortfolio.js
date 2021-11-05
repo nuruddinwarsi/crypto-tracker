@@ -1,10 +1,8 @@
 import axios from 'axios';
 import AppConfig from '@/config';
-import Vue from 'vue';
 
 const { apiBaseUrl } = AppConfig;
 
-let jwtToken = Vue.$cookies.get('jwt');
 const addToPortfolio = async (
   coinId,
   coinName,
@@ -26,9 +24,6 @@ const addToPortfolio = async (
       date: inputDate,
     },
     {
-      headers: {
-        Authorization: jwtToken,
-      },
       withCredentials: true,
     }
   );
