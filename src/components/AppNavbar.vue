@@ -3,8 +3,7 @@
     <div>
       <router-link
         class="navbar-link item-1"
-        exact
-        to="/"
+        to="/crypto"
         active-class="active"
       >
         <font-awesome-icon icon="home" class="icon" /> Home

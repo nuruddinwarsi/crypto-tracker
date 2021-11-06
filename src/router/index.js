@@ -18,7 +18,7 @@ const router = new Router({
   routes: [
     {
       name: 'AppHome',
-      path: '/',
+      path: '/crypto',
       component: AppHome,
     },
     {
@@ -51,7 +51,7 @@ const router = new Router({
     // Dynamic route for individual cryptocurrency
     {
       name: 'CryptoPage',
-      path: '/crypto/:coin/symbol/:symbol',
+      path: '/crypto/:coin/:symbol',
       component: CryptoPage,
       props: true,
     },
