@@ -2,9 +2,6 @@
   <div class="body-content">
     <PageHeader :header="`CryptoTracker`" />
     <div v-if="status === 'LOADING'">
-      <div class="crypto-data">
-        <img class="rotate" src="../assets/btc_logo.png" alt="loading icon" />
-      </div>
       <AppBanner :status="status" :message="message" />
     </div>
     <div class="crypto-data" v-else-if="status === 'LOADED'">
@@ -89,45 +86,6 @@ export default {
 .body-content {
   grid-template-columns: 1fr;
   grid-template-rows: 0.1fr 1fr;
-}
-
-.rotate {
-  width: 50%;
-  place-self: center;
-  animation: rotation 5s infinite linear;
-}
-
-@-webkit-keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(359deg);
-  }
-}
-@-moz-keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(359deg);
-  }
-}
-@-o-keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(359deg);
-  }
-}
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(359deg);
-  }
 }
 
 .crypto-data {

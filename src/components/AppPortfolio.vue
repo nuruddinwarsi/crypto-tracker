@@ -3,7 +3,6 @@
     <PageHeader :header="`Portfolio`" />
 
     <div v-if="status === 'LOADING'">
-      <img class="rotate" src="../assets/btc_logo.png" alt="loading icon" />
       <AppBanner :status="status" :message="message" />
     </div>
 

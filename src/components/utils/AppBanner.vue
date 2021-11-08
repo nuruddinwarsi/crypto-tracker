@@ -3,7 +3,13 @@
     <div class="msg-box">
       <div class="banner" :class="changeBannerColor">
         <div class="message">
-          {{ message }}
+          <img
+            class="rotate"
+            src="../../assets/btc_logo.png"
+            alt="loading icon"
+            v-show="status === 'LOADING'"
+          />
+          <div>{{ message }}</div>
           <button
             v-show="status === 'ERROR'"
             type="button"
@@ -89,6 +95,45 @@ export default {
 .modal-fade-enter-active,
 .modal-fade-leave-active {
   transition: opacity 0.5s ease;
+}
+
+.rotate {
+  width: 50%;
+  place-self: center;
+  animation: rotation 5s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+@-moz-keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+@-o-keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
 }
 .LOADING {
   color: #00529b;
