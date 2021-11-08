@@ -9,7 +9,7 @@
             alt="loading icon"
             v-show="status === 'LOADING'"
           />
-          <div>{{ message }}</div>
+          <span>{{ message }}</span>
           <button
             v-show="status === 'ERROR'"
             type="button"
@@ -82,6 +82,7 @@ export default {
   border: none;
   font-size: 20px;
   padding: 10px;
+  margin-left: 8px;
   cursor: pointer;
   font-weight: bold;
   background: transparent;
