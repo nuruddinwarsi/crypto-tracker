@@ -31,8 +31,12 @@ const auth = {
   actions: {
     // Register vuex actions
     register({ commit }, credentials) {
-      return register(credentials).then((data) => {
-        const { token, emailId, username } = data;
+      return register(credentials).then((response) => {
+        // send error response recieved from backend
+        if (response.status === false) {
+          return response;
+        }
+        const { token, emailId, username } = response;
         Vue.$cookies.set(KEY_TOKEN, token);
         Vue.$cookies.set(KEY_EMAIL, emailId);
         Vue.$cookies.set(KEY_NAME, username);
@@ -40,14 +44,18 @@ const auth = {
         commit('setToken', token);
         commit('setEmail', emailId);
         commit('setName', username);
-        return username;
+        return response;
       });
     },
 
     // Login vuex actions
     login({ commit }, credentials) {
-      return login(credentials).then((data) => {
-        const { token, emailId, username } = data;
+      return login(credentials).then((response) => {
+        // send error response recieved from backend
+        if (response.status === false) {
+          return response;
+        }
+        const { token, emailId, username } = response;
         Vue.$cookies.set(KEY_TOKEN, token);
         Vue.$cookies.set(KEY_EMAIL, emailId);
         Vue.$cookies.set(KEY_NAME, username);
@@ -55,7 +63,7 @@ const auth = {
         commit('setToken', token);
         commit('setEmail', emailId);
         commit('setName', username);
-        return username;
+        return response;
       });
     },
 

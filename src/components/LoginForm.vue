@@ -85,16 +85,23 @@ export default {
 
       this.$store
         .dispatch('login', this.form)
-        .then(() => {
-          this.status = 'LOADED';
-          this.$router.push({ name: 'AppHome' });
+        .then((response) => {
+          if (response.status === false) {
+            this.status = 'ERROR';
+            this.message = response.message;
+            this.isBannerVisible = true;
+          } else {
+            this.isBannerVisible = false;
+            this.status = 'LOADED';
+            this.$router.push({ name: 'AppPortfolio' });
+          }
         })
         .catch((error) => {
           this.isBannerVisible = true;
 
           this.status = 'ERROR';
           this.error = error;
-          this.message = 'Credentials do not match';
+          this.message = `Couldn't login. Please try again`;
           console.log(error.message);
         });
     },
