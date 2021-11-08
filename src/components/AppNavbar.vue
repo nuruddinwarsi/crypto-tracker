@@ -27,7 +27,7 @@
         to="/alerts"
         active-class="active"
       >
-        <font-awesome-icon icon="bell" class="icon" />Alerts</router-link
+        <font-awesome-icon icon="plus-square" class="icon" />Add</router-link
       >
     </div>
 

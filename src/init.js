@@ -12,6 +12,7 @@ import {
   faUser,
   faBell,
   faLink,
+  faPlusSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faBitcoin,
@@ -24,7 +25,16 @@ import VueScreen from 'vue-screen';
 Vue.use(VueApexCharts);
 Vue.component('apexchart', VueApexCharts);
 
-library.add(faHome, faUser, faBitcoin, faBell, faLink, faReddit, faGithub);
+library.add(
+  faHome,
+  faUser,
+  faBitcoin,
+  faBell,
+  faLink,
+  faReddit,
+  faGithub,
+  faPlusSquare
+);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.use(VueScreen);
