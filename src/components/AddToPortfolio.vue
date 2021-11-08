@@ -1,7 +1,7 @@
 <template>
   <div class="body-content">
     <PageHeader :header="`Add To Portfolio`" />
-    <div class="form">
+    <form class="form" @submit.prevent="callAddToPortfolio">
       <div class="title">Welcome</div>
       <div class="subtitle">Let's create your account!</div>
       <div class="input-container ic1">
@@ -10,6 +10,7 @@
           name="date"
           id="date"
           class="input"
+          placeholder=" "
           v-model="inputDate"
         />
         <div class="cut"></div>
@@ -83,21 +84,36 @@
         <div class="cut"></div>
         <label for="boughtFrom" class="placeholder">Platform</label>
       </div>
-      <button type="submit" class="submit" @click="callAddToPortfolio()">
+      <button type="submit" class="submit">
         Add
       </button>
-    </div>
+      <div v-show="clickedOnSubmit">
+        <div v-if="status === 'LOADING'">
+          <AppBanner :status="status" :message="message" />
+        </div>
+        <div v-else-if="status === 'ERROR'">
+          <AppBanner
+            :status="status"
+            :message="message"
+            v-show="isBannerVisible"
+            @close="closeBanner"
+          />
+        </div>
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
 import PageHeader from '@/components/utils/PageHeader';
+import AppBanner from '@/components/utils/AppBanner';
 import { addToPortfolio } from '@/services/addToPortfolio';
 
 export default {
   name: 'AddToPortfolio',
   components: {
     PageHeader,
+    AppBanner,
   },
   data() {
     return {
@@ -108,12 +124,23 @@ export default {
       boughtAt: 0,
       boughtFrom: '',
       inputDate: new Date().toISOString().slice(0, 10),
+
+      // AppSpinner data
+      status: 'LOADED',
+      error: null,
+      message: 'Adding to your portfolio ... ',
+      clickedOnSubmit: false,
+      isBannerVisible: false,
     };
   },
   methods: {
+    closeBanner() {
+      this.isBannerVisible = false;
+      this.clickedOnLogin = !this.clickedOnLogin;
+    },
     async callAddToPortfolio() {
       try {
-        const data = await addToPortfolio(
+        const response = await addToPortfolio(
           this.coinId,
           this.coinName,
           this.quantity,
@@ -122,9 +149,23 @@ export default {
           this.boughtFrom,
           this.inputDate
         );
-        console.log(data);
+        if (response.status === false) {
+          this.status = 'ERROR';
+          this.message = response.message;
+          this.isBannerVisible = true;
+        } else {
+          this.isBannerVisible = false;
+          this.message = 'DATA FETCHED';
+          this.status = 'LOADED';
+          this.$router.push({ name: 'AppPortfolio' });
+        }
       } catch (error) {
-        console.log(error);
+        this.isBannerVisible = true;
+
+        this.status = 'ERROR';
+        this.error = error;
+        this.message = `Couldn't add. Please try again`;
+        console.log(error.message);
       }
     },
   },
