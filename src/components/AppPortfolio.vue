@@ -71,9 +71,10 @@ export default {
           this.status = 'LOADED';
         }
       } catch (error) {
+        this.isBannerVisible = true;
+        this.status = 'ERROR';
         this.error = error;
         this.message = 'CANNOT FETCH YOUR PORTFOLIO';
-        this.status = 'ERROR';
       }
     },
     createPortfolioSummary(portfolioData) {
