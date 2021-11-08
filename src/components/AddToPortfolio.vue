@@ -136,7 +136,7 @@ export default {
   methods: {
     closeBanner() {
       this.isBannerVisible = false;
-      this.clickedOnLogin = !this.clickedOnLogin;
+      this.clickedOnSubmit = !this.clickedOnSubmit;
     },
     async callAddToPortfolio() {
       try {

@@ -48,7 +48,7 @@ export default {
   place-self: center;
   background: linear-gradient(90deg, #a1c4fd, #c2e9fb 51%, #a1c4fd) var(--x, 0) /
     200%;
-  color: white;
+  color: #212121;
 }
 .page-title button:hover,
 .page-title button:focus {
