@@ -13,6 +13,7 @@ import {
   faBell,
   faLink,
   faPlusSquare,
+  faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faBitcoin,
@@ -33,7 +34,8 @@ library.add(
   faLink,
   faReddit,
   faGithub,
-  faPlusSquare
+  faPlusSquare,
+  faTrashAlt
 );
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

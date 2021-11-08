@@ -2,17 +2,16 @@
   <div class="body-content">
     <PageHeader :header="`${coinId} Summary`" />
     <div v-if="status === 'LOADING'">
-      <div class="coin-div">
-        <img class="rotate" src="../assets/btc_logo.png" alt="loading icon" />
-      </div>
       <AppBanner :status="status" :message="message" />
     </div>
-    <div v-else-if="status === 'LOADED'">
+    <div v-else-if="status === 'LOADED'" class="user-data">
       <LineChart
         :chartLabels="chartLabels"
         :chartData="chartData"
         :coinId="coinId"
+        class="line-chart"
       />
+      <SummaryTable :coinData="coinData" />
     </div>
     <div v-else-if="status === 'ERROR'">
       <AppBanner :status="status" :message="message" />
@@ -25,6 +24,7 @@ import { getPortfolioSummary } from '@/services/getPortfolioSummary';
 import PageHeader from '@/components/utils/PageHeader';
 import LineChart from '@/components/utils/LineChart';
 import AppBanner from '@/components/utils/AppBanner';
+import SummaryTable from '@/components/SummaryTable';
 
 export default {
   name: 'PortfolioSummary',
@@ -32,6 +32,7 @@ export default {
     PageHeader,
     LineChart,
     AppBanner,
+    SummaryTable,
   },
   data() {
     return {
@@ -39,6 +40,7 @@ export default {
       chartLabels: [],
       chartData: [],
 
+      coinData: [],
       // AppSpinner data
       status: 'LOADING',
       error: null,
@@ -50,9 +52,11 @@ export default {
       try {
         this.status = 'LOADING';
         this.message = 'FETCHING PRICES ...';
-        const data = await getPortfolioSummary(this.coinId);
+        const response = await getPortfolioSummary(this.coinId);
 
-        data.data.forEach((element) => {
+        this.coinData = response.data;
+        console.log(response);
+        response.data.forEach((element) => {
           this.chartLabels.push(element.date.slice(0, 10));
           this.chartData.push(element.amount);
         });
@@ -74,48 +78,20 @@ export default {
 
 <style scoped>
 .body-content {
-  grid-template-rows: 0.1fr 1fr;
-}
-.coin-div {
-  display: grid;
-  justify-content: center;
-}
-.rotate {
-  width: 50%;
-  place-self: center;
-  animation: rotation 5s infinite linear;
+  grid-template-rows: 0.05fr 1fr;
 }
 
-@-webkit-keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(359deg);
-  }
+.user-data {
+  width: 80%;
+  margin: 0 8px;
+  /*   display: grid;
+  grid-template-rows: repeat(2, 1fr);
+ */
 }
-@-moz-keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(359deg);
-  }
-}
-@-o-keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(359deg);
-  }
-}
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(359deg);
+
+@media only screen and (min-width: 500px) {
+  .user-data {
+    width: 95%;
   }
 }
 </style>
