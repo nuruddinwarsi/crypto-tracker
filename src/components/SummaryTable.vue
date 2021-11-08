@@ -7,8 +7,8 @@
           <th class="column2">Quantity</th>
           <th class="column3">Amount</th>
           <th class="column4">Bought At</th>
-          <th class="column5">Bought From</th>
-          <th class="column6">Delete</th>
+          <th class="column5">Platform</th>
+          <th class="column6"></th>
         </tr>
       </thead>
       <tbody>
@@ -19,7 +19,7 @@
           <td class="column4">₹ {{ coin.boughtAt }}</td>
           <td class="column5">{{ coin.boughtFrom }}</td>
           <td class="column6">
-            <button>
+            <button @click="deleteEntry(coin._id)">
               <font-awesome-icon icon="trash-alt" class="icon" />
             </button>
           </td>
@@ -36,6 +36,11 @@ export default {
     coinData: {
       type: Array,
       default: () => [],
+    },
+  },
+  methods: {
+    deleteEntry(id) {
+      this.$emit('deleteEntry', id);
     },
   },
 };
@@ -109,9 +114,12 @@ tbody tr:hover {
   background-color: #f5f5f5;
 }
 
+button {
+  border: none;
+  background: transparent;
+}
 button:hover {
   cursor: pointer;
-  border: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -161,10 +169,7 @@ button:hover {
     content: 'Bought At';
   }
   table tbody tr td:nth-child(5):before {
-    content: 'Bought From';
-  }
-  table tbody tr td:nth-child(6):before {
-    content: 'Delete';
+    content: 'Platform';
   }
 
   .column4,

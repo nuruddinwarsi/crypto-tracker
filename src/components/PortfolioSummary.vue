@@ -11,7 +11,10 @@
         :coinId="coinId"
         class="line-chart"
       />
-      <SummaryTable :coinData="coinData" />
+      <SummaryTable
+        :coinData="coinData"
+        @deleteEntry="deletePurchase($event)"
+      />
     </div>
     <div v-else-if="status === 'ERROR'">
       <AppBanner :status="status" :message="message" />
@@ -67,6 +70,10 @@ export default {
         this.message = 'Cannot fetch data, Please try again';
         this.status = 'ERROR';
       }
+    },
+
+    async deletePurchase(id) {
+      console.log(id);
     },
   },
   created() {
