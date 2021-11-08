@@ -1,13 +1,11 @@
 <template>
   <div class="body-container">
-    <PageHeader :header="`Login Page`" />
-
     <form class="form" @submit.prevent="registerUser">
       <div class="form-header">
         <div class="title">Welcome</div>
         <div class="subtitle">Please register</div>
         <div class="register">
-          <router-link to="/login" class="register-link">Signup</router-link>
+          <router-link to="/login" class="register-link">Login</router-link>
         </div>
       </div>
       <div class="input-container ic1">
@@ -49,19 +47,23 @@
         Register
       </button>
     </form>
-    <div v-if="clickedOnLogin">
+    <div v-show="clickedOnLogin">
       <div v-if="status === 'LOADING'">
         <AppBanner :status="status" :message="message" />
       </div>
       <div v-else-if="status === 'ERROR'">
-        <AppBanner :status="status" :message="message" />
+        <AppBanner
+          :status="status"
+          :message="message"
+          v-show="isBannerVisible"
+          @close="closeBanner"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// import { register } from '@/services/auth';
 import PageHeader from '@/components/utils/PageHeader';
 import AppBanner from '@/components/utils/AppBanner';
 
@@ -78,17 +80,24 @@ export default {
         username: '',
         emailId: '',
         password: '',
-
-        // AppSpinner data
-        status: 'LOADING',
-        error: null,
-        message: 'LOGGING YOU IN ',
-        clickedOnLogin: false,
       },
+      // AppSpinner data
+      status: 'LOADED',
+      error: null,
+      message: 'Logging you in ... ',
+      clickedOnLogin: false,
+      isBannerVisible: false,
     };
   },
   methods: {
+    closeBanner() {
+      this.isBannerVisible = false;
+      this.clickedOnLogin = !this.clickedOnLogin;
+    },
     registerUser() {
+      this.status = 'LOADING';
+      this.clickedOnLogin = !this.clickedOnLogin;
+
       this.$store
         .dispatch('register', this.form)
         .then(() => {
@@ -96,9 +105,11 @@ export default {
           this.$router.push({ name: 'AppHome' });
         })
         .catch((error) => {
+          this.isBannerVisible = true;
+
           this.status = 'ERROR';
           this.error = error;
-          this.message = 'Credentials do not match';
+          this.message = 'Account not created. Please try again';
           console.log(error.message);
         });
     },
@@ -107,10 +118,10 @@ export default {
 </script>
 
 <style scoped>
-.body-content {
+/* .body-content {
   grid-template-columns: 1fr;
   grid-template-rows: 0.1fr 1fr;
-}
+} */
 
 .form {
   background-color: #202020;
