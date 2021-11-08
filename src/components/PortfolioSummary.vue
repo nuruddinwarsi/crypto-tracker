@@ -24,6 +24,7 @@
 
 <script>
 import { getPortfolioSummary } from '@/services/getPortfolioSummary';
+import { deletePurchase } from '@/services/deletePurchase';
 import PageHeader from '@/components/utils/PageHeader';
 import LineChart from '@/components/utils/LineChart';
 import AppBanner from '@/components/utils/AppBanner';
@@ -44,27 +45,40 @@ export default {
       chartData: [],
 
       coinData: [],
-      // AppSpinner data
+
+      // AppBanner data
       status: 'LOADING',
       error: null,
       message: 'FETCHING DATA ... ',
+
+      isBannerVisible: false,
     };
   },
   methods: {
+    closeBanner() {
+      this.isBannerVisible = false;
+    },
     async portfolioSummaryCall() {
       try {
         this.status = 'LOADING';
         this.message = 'FETCHING PRICES ...';
+
         const response = await getPortfolioSummary(this.coinId);
 
-        this.coinData = response.data;
-        console.log(response);
-        response.data.forEach((element) => {
-          this.chartLabels.push(element.date.slice(0, 10));
-          this.chartData.push(element.amount);
-        });
-        this.message = 'DATA FETCHED';
-        this.status = 'LOADED';
+        if (response.status === false) {
+          this.status = 'ERROR';
+          this.message = response.message;
+          this.isBannerVisible = true;
+        } else {
+          this.isBannerVisible = false;
+          this.coinData = response.data;
+          response.data.forEach((element) => {
+            this.chartLabels.push(element.date.slice(0, 10));
+            this.chartData.push(element.amount);
+          });
+          this.message = 'DATA FETCHED';
+          this.status = 'LOADED';
+        }
       } catch (error) {
         this.error = error;
         this.message = 'Cannot fetch data, Please try again';
@@ -73,7 +87,29 @@ export default {
     },
 
     async deletePurchase(id) {
-      console.log(id);
+      try {
+        this.status = 'LOADING';
+        this.message = 'FETCHING PRICES ...';
+
+        const response = await deletePurchase(id);
+
+        if (response.status === false) {
+          this.status = 'ERROR';
+          this.message = response.message;
+          this.isBannerVisible = true;
+        } else {
+          this.isBannerVisible = false;
+          this.portfolioSummaryCall();
+          this.message = 'DATA FETCHED';
+          this.status = 'LOADED';
+        }
+      } catch (error) {
+        this.isBannerVisible = true;
+
+        this.status = 'ERROR';
+        this.error = error;
+        this.message = `Couldn't delete. Please try again`;
+      }
     },
   },
   created() {
