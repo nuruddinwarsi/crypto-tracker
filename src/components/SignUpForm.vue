@@ -64,13 +64,11 @@
 </template>
 
 <script>
-import PageHeader from '@/components/utils/PageHeader';
 import AppBanner from '@/components/utils/AppBanner';
 
 export default {
   name: 'SignUpForm',
   components: {
-    PageHeader,
     AppBanner,
   },
 
