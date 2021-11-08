@@ -13,7 +13,12 @@
     </div>
 
     <div v-if="status === 'ERROR'">
-      <AppBanner :status="status" :message="message" />
+      <AppBanner
+        :status="status"
+        :message="message"
+        v-show="isBannerVisible"
+        @close="closeBanner"
+      />
     </div>
   </div>
 </template>
@@ -40,20 +45,31 @@ export default {
       status: 'LOADING',
       error: null,
       message: 'FETCHING LIST ... ',
+
+      isBannerVisible: false,
     };
   },
   methods: {
+    closeBanner() {
+      this.isBannerVisible = false;
+    },
     async callGetPortfolio() {
       try {
         this.status = 'LOADING';
         this.message = 'FETCHING PRICES ...';
 
         const response = await getPortfolio();
-        this.portfolioData = response.data;
-        this.createPortfolioSummary(this.portfolioData);
-
-        this.message = 'DATA FETCHED';
-        this.status = 'LOADED';
+        if (response.status === false) {
+          this.status = 'ERROR';
+          this.message = response.message;
+          this.isBannerVisible = true;
+        } else {
+          this.isBannerVisible = false;
+          this.portfolioData = response.data;
+          this.createPortfolioSummary(this.portfolioData);
+          this.message = 'DATA FETCHED';
+          this.status = 'LOADED';
+        }
       } catch (error) {
         this.error = error;
         this.message = 'CANNOT FETCH YOUR PORTFOLIO';
