@@ -9,7 +9,7 @@
         <font-awesome-icon icon="home" class="icon" /> Home
       </router-link>
     </div>
-    <div>
+    <div v-if="isAuthenticated">
       <router-link
         class="navbar-link item-2"
         to="/portfolio"
@@ -21,7 +21,7 @@
         />Portfolio</router-link
       >
     </div>
-    <div>
+    <div v-if="isAuthenticated">
       <router-link
         class="navbar-link item-3"
         to="/alerts"

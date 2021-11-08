@@ -67,11 +67,11 @@ export default {
         password: '',
       },
       // AppSpinner data
-      status: 'ERROR',
+      status: 'LOADED',
       error: null,
       message: 'Logging you in ... ',
       clickedOnLogin: false,
-      isBannerVisible: true,
+      isBannerVisible: false,
     };
   },
   methods: {
@@ -80,6 +80,7 @@ export default {
       this.clickedOnLogin = !this.clickedOnLogin;
     },
     loginUser() {
+      this.status = 'LOADING';
       this.clickedOnLogin = !this.clickedOnLogin;
 
       this.$store
