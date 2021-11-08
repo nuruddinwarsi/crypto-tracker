@@ -1,9 +1,21 @@
 <template>
-  <div class="msg-box">
-    <div class="banner" :class="changeBannerColor">
-      <p>{{ message }}</p>
+  <transition name="modal-fade">
+    <div class="msg-box">
+      <div class="banner" :class="changeBannerColor">
+        <div class="message">
+          {{ message }}
+          <button
+            v-show="status === 'ERROR'"
+            type="button"
+            class="btn-close"
+            @click="close"
+          >
+            x
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -17,6 +29,11 @@ export default {
     message: {
       type: String,
       default: 'Fetching your data ...',
+    },
+  },
+  methods: {
+    close() {
+      this.$emit('close');
     },
   },
   computed: {
@@ -33,15 +50,46 @@ export default {
 
 <style scoped>
 .msg-box {
-  display: grid;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .banner {
-  margin: 8px;
-  padding: 32px;
   border-radius: 5px;
-  place-self: center;
+  padding: 32px;
+  background: #ffffff;
+  box-shadow: 2px 2px 20px 2px;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
 }
 
+.btn-close {
+  top: 0;
+  right: 0;
+  border: none;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  background: transparent;
+}
+
+.modal-fade-enter,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.5s ease;
+}
 .LOADING {
   color: #00529b;
   background-color: #bde5f8;

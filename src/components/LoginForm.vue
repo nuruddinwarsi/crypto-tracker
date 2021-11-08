@@ -1,7 +1,5 @@
 <template>
   <div class="body-container">
-    <PageHeader :header="`Login Page`" />
-
     <form class="form" @submit.prevent="loginUser">
       <div class="form-header">
         <div class="title">Welcome</div>
@@ -31,32 +29,35 @@
           v-model="form.password"
         />
         <div class="cut"></div>
-        <label for="coinName" class="placeholder">Password</label>
+        <label for="password" class="placeholder">Password</label>
       </div>
 
       <button type="submit" class="submit">
         Login
       </button>
+      <div v-show="clickedOnLogin">
+        <div v-if="status === 'LOADING'">
+          <AppBanner :status="status" :message="message" />
+        </div>
+        <div v-else-if="status === 'ERROR'">
+          <AppBanner
+            :status="status"
+            :message="message"
+            v-show="isBannerVisible"
+            @close="closeBanner"
+          />
+        </div>
+      </div>
     </form>
-    <div v-if="clickedOnLogin">
-      <div v-if="status === 'LOADING'">
-        <AppBanner :status="status" :message="message" />
-      </div>
-      <div v-else-if="status === 'ERROR'">
-        <AppBanner :status="status" :message="message" />
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
-import PageHeader from '@/components/utils/PageHeader';
 import AppBanner from '@/components/utils/AppBanner';
 
 export default {
   name: 'SignUpForm',
   components: {
-    PageHeader,
     AppBanner,
   },
   data() {
@@ -64,16 +65,20 @@ export default {
       form: {
         emailId: '',
         password: '',
-
-        // AppSpinner data
-        status: 'LOADING',
-        error: null,
-        message: 'LOGGING YOU IN ',
-        clickedOnLogin: false,
       },
+      // AppSpinner data
+      status: 'ERROR',
+      error: null,
+      message: 'Logging you in ... ',
+      clickedOnLogin: false,
+      isBannerVisible: true,
     };
   },
   methods: {
+    closeBanner() {
+      this.isBannerVisible = false;
+      this.clickedOnLogin = !this.clickedOnLogin;
+    },
     loginUser() {
       this.clickedOnLogin = !this.clickedOnLogin;
 
@@ -84,6 +89,8 @@ export default {
           this.$router.push({ name: 'AppHome' });
         })
         .catch((error) => {
+          this.isBannerVisible = true;
+
           this.status = 'ERROR';
           this.error = error;
           this.message = 'Credentials do not match';
@@ -95,11 +102,6 @@ export default {
 </script>
 
 <style scoped>
-.body-content {
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.1fr 1fr;
-}
-
 .form {
   background-color: #202020;
   color: #8edce6;
