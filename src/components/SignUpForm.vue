@@ -17,6 +17,11 @@
           class="input"
           v-model="form.username"
           placeholder="Username"
+          pattern="^[a-zA-Z0-9]*$"
+          title="Username must consist alphanumeric characters"
+          required
+          minlength="4"
+          maxlength="12"
         />
       </div>
       <div class="input-container ">
@@ -27,6 +32,9 @@
           class="input"
           v-model="form.emailId"
           placeholder="Email ID"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          title="Please enter a correct email id format Eg: crypto@test.com"
+          required
         />
       </div>
 
@@ -37,6 +45,10 @@
           type="password"
           placeholder="Password"
           v-model="form.password"
+          pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/"
+          title="Password must contain at least 1 lowercase, 1 uppercase , 1 numeric  and one special character"
+          required
+          minlength="8"
         />
       </div>
 
@@ -81,7 +93,7 @@ export default {
       // AppSpinner data
       status: 'LOADED',
       error: null,
-      message: 'Logging you in ... ',
+      message: 'Registering ... ',
       clickedOnLogin: false,
       isBannerVisible: false,
     };
