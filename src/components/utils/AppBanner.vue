@@ -100,6 +100,7 @@ export default {
 
 .rotate {
   width: 50%;
+  display: block;
   place-self: center;
   animation: rotation 5s infinite linear;
 }

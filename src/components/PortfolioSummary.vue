@@ -124,7 +124,7 @@ export default {
   grid-template-rows: 0.05fr 1fr;
 }
 
-.user-data {
+.line-chart {
   width: 80%;
   margin: 0 8px;
   /*   display: grid;
@@ -133,7 +133,7 @@ export default {
 }
 
 @media only screen and (min-width: 500px) {
-  .user-data {
+  .line-chart {
     width: 95%;
   }
 }

@@ -113,11 +113,11 @@ tbody tr:hover {
   color: #555555;
   background-color: #f5f5f5;
 }
-
 button {
   border: none;
   background: transparent;
 }
+
 button:hover {
   cursor: pointer;
 }
@@ -189,6 +189,14 @@ button:hover {
 
   tbody tr {
     font-size: 14px;
+  }
+  button {
+    border: 1px solid #212121;
+    padding: 8px;
+    width: 50%;
+    background: #d8000c;
+    color: #ffd2d2;
+    border-radius: 5px;
   }
 }
 </style>
