@@ -30,7 +30,7 @@
           type="password"
           placeholder="Password"
           v-model="form.password"
-          pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/"
+          pattern="(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$"
           title="Password must contain at least 1 lowercase, 1 uppercase , 1 numeric  and one special character"
           required
           minlength="8"

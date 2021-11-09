@@ -3,12 +3,15 @@
     <div class="msg-box">
       <div class="banner" :class="changeBannerColor">
         <div class="message">
-          <img
-            class="rotate"
-            src="../../assets/btc_logo.png"
-            alt="loading icon"
-            v-show="status === 'LOADING'"
-          />
+          <div>
+            <img
+              class="rotate"
+              src="../../assets/btc_logo.png"
+              alt="loading icon"
+              v-show="status === 'LOADING'"
+            />
+          </div>
+          <hr />
           <span>{{ message }}</span>
           <button
             v-show="status === 'ERROR'"
@@ -100,7 +103,6 @@ export default {
 
 .rotate {
   width: 50%;
-  display: block;
   place-self: center;
   animation: rotation 5s infinite linear;
 }
